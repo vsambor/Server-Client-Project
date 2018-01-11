@@ -1,0 +1,11 @@
+$space: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100);
+$pos: (top, bottom, left, right);
+
+@each $s in $space {
+  .m#{$s} { margin: #{$s}px; }
+  .p#{$s} { margin: #{$s}px; }
+  @each $p in $pos {
+    .m#{str-slice($p, 0, 1)}-#{$s} { margin-#{$p}: #{$s}px; }
+    .p#{str-slice($p, 0, 1)}-#{$s} { padding-#{$p}: #{$s}px; }
+  }
+}

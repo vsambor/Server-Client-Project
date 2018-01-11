@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+  - 'lts/*'
+
+script:
+  # - 'npm run server-unit-test'
+  - 'npm run client-unit-test'
+  # - 'npm run client-e2e-test'
+
+notifications:
+  email: false
