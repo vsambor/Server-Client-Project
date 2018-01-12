@@ -1,5 +1,6 @@
 /build/
 /config/
 /dist/
-/*.js
-/test/unit/coverage/
+client/test/unit/coverage/
+client/test/e2e/reports/
+server/test/coverage/

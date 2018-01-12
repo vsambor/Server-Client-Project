@@ -6,8 +6,17 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
+  // Prevents displaying eslint errors like: mocha or expect not defined. 
   env: {
+    es6: true,
     browser: true,
+    node: true,
+    mocha: true
+  },
+  globals: {
+    chai: true,
+    expect: true,
+    sinon: true
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: 'standard',
