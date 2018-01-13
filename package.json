@@ -23,6 +23,7 @@
     "element-ui": "^2.0.9",
     "express": "^4.16.2",
     "helmet": "^3.9.0",
+    "i18n": "^0.8.3",
     "mongoose": "^4.13.7",
     "morgan": "^1.9.0",
     "nodemailer": "^4.4.1",

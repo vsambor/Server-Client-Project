@@ -1,6 +1,7 @@
 const env = process.env.NODE_ENV || 'development'
 const port = process.env.PORT || 8081
 const packageJson = require('../../package.json')
+const i18n = require('./i18n')
 const path = require('path')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -21,6 +22,7 @@ if (!config) {
 }
 
 // Midlewares
+app.use(i18n.init)
 app.use(morgan('dev'))
 app.use(cors())
 app.use(helmet())

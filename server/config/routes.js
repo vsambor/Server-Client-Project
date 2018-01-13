@@ -1,6 +1,6 @@
 module.exports = (app) => {
   // Index routes.
-  app.get('/', (req, res) => res.status(200).send('Please check /api routes'))
+  app.get('/', (req, res) => res.status(200).send(res.__('home')))
 
   // Application routes.
   require('../src/user').route(app)
