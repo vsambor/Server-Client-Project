@@ -1,10 +1,10 @@
-import Vue from 'vue'
 import Home from '@/components/Home'
+import Util from './TestUtil'
 
 describe('Home.vue', () => {
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(Home)
-    const vm = new Constructor().$mount()
+    const vm = Util.getRenderedComponent(Home)
+    vm.$mount()
     expect(vm.$el.querySelector('h1').textContent)
       .to.equal('Welcome to Server Client Project (STP)!')
   })
