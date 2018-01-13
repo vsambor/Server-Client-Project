@@ -11,10 +11,10 @@ server-client-project is a class project.
 ![Node 8](https://img.shields.io/badge/node-8.9.x-green.svg)
 ![npm](https://img.shields.io/badge/npm-5.6.x-yellow.svg)
 ![MongoDB](https://img.shields.io/badge/mongodb-3.6-yellowgreen.svg)
+![express](https://img.shields.io/badge/express-4.16.x-orange.svg)
 ![VueJS 2](https://img.shields.io/badge/vuejs-2.5.x-brightgreen.svg)
 ![Webpack 3](https://img.shields.io/badge/webpack-3.6.x-blue.svg)
 ![Element-UI 2](https://img.shields.io/badge/element-2.0-ff69b4.svg)
-
 
 ## Features
 
