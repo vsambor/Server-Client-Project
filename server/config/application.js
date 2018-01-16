@@ -10,9 +10,9 @@ const express = require('express')
 const compress = require('compression')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
-
-const app = express()
 const config = require('./config')[env]
+const auth = require('../middleware/auth')
+const app = express()
 
 console.log(`Loading App in ${env} mode.`)
 
@@ -29,6 +29,7 @@ app.use(helmet())
 app.use(compress())
 app.use(bodyParser.json())
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
+app.use(auth().initialize())
 
 // Bootstrap the routes.
 require('./routes')(app)
