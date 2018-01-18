@@ -1,35 +1,47 @@
 <template>
   <div>
-    <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+    <q-toolbar slot="header" :color="themeColor">
+      <q-btn flat @click="$parent.toggleLeft()">
+        <q-icon name="menu" />
+      </q-btn>
+      <q-toolbar-title> SCP
+        <span slot="subtitle">Server Client Project</span>
+      </q-toolbar-title>
 
-      <router-link to="/">
-        <el-menu-item index="0">
-          <strong>Server Client Project</strong>
-        </el-menu-item>
-      </router-link>
+      <!-- Login -->
+      <q-btn flat @click="$router.push('/login')">
+        <q-icon name="assignment ind" />
+      </q-btn>
 
-      <router-link to="/">
-        <el-menu-item index="1">Home</el-menu-item>
-      </router-link>
+      <q-btn flat>
+        <q-icon name="assignment" />
+      </q-btn>
 
-    </el-menu>
+      <q-btn flat>
+        <q-icon name="exit to app" />
+      </q-btn>
+
+      <q-btn flat>
+        <q-icon name="language" />
+      </q-btn>
+    </q-toolbar>
+
+    <!-- Navigation -->
+    <q-tabs slot="navigation" :color="themeColor" inverted>
+      <q-route-tab slot="title" icon="home" to="/" replace hide="icon" label="Home" />
+      <q-route-tab slot="title" icon="map" to="/map" replace hide="icon" label="Map" />
+    </q-tabs>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      activeIndex: '1'
-    }
+  props: {
+    themeColor: ''
   },
-  methods: {
-    handleSelect(key, keyPath) {
-      // Not working for some reason, I will recheck.
-      if (key === '0') {
-        this.activeIndex = '1'
-      }
-    }
-  }
+  data() {
+    return {}
+  },
+  methods: {}
 }
 </script>

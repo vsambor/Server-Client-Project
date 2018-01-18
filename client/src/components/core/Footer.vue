@@ -1,22 +1,16 @@
 <template>
-  <footer class="footer">
-    <el-row>
-      <p>2018 © Server Client Project. All rights reserved.</p>
-    </el-row>
-  </footer>
+  <q-toolbar :color="themeColor">
+    <q-toolbar-title>
+      2018 © Server Client Project. All rights reserved.
+      <i class="fa fa-github"></i>
+    </q-toolbar-title>
+  </q-toolbar>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    themeColor: ''
+  }
+}
 </script>
-
-<style >
-.footer {
-  background-color: rgb(84, 92, 100);
-  text-align: center;
-}
-
-p {
-  color: white;
-}
-</style>

@@ -6,10 +6,20 @@ import i18n from './i18n'
 import App from './App'
 import store from './store'
 import router from './router'
-import Element from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'quasar-framework/dist/quasar.mat.css'
+import Quasar, * as All from 'quasar-framework'
 
-Vue.use(Element)
+// Optional
+import 'quasar-extras/roboto-font'
+import 'quasar-extras/material-icons'
+import './main.scss'
+
+Vue.use(Quasar, {
+  // Test only, not for production
+  directives: All,
+  components: All
+})
+
 Vue.use(Vuex)
 
 Vue.config.productionTip = false
