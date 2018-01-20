@@ -9,15 +9,15 @@ export default new Vuex.Store({
   state: {
     isLogged: false,
     currentUser: null,
-    currentLanguage: 'en'
+    currentTheme: 'secondary'
   },
   mutations: {
     setCurrentUser(state, value) {
       state.currentUser = value
       state.isLogged = true
     },
-    setCurrentLanguage(state, value) {
-      state.currentLanguage = value
+    setCurrentTheme(state, value) {
+      state.currentTheme = value
     },
     logout(state) {
       state.isLogged = false
@@ -27,7 +27,7 @@ export default new Vuex.Store({
   getters: {
     isLogged: state => state.isLogged,
     currentUser: state => state.currentUser,
-    currentLanguage: state => state.currentLanguage
+    currentTheme: state => state.currentTheme
   }
   // To do things async
   // actions: { }

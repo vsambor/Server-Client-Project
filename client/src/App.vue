@@ -2,7 +2,7 @@
   <q-layout ref="layout" view="hHr LpR lFf">
 
     <!-- Header -->
-    <navbar slot="header" :themeColor="themeColor" />
+    <navbar slot="header" />
 
     <!-- Left Side Panel -->
     <leftsider slot="left" />
@@ -13,7 +13,7 @@
     </div>
 
     <!-- Footer -->
-    <footerbar slot="footer" :themeColor="themeColor" />
+    <footerbar slot="footer" />
 
   </q-layout>
 </template>
@@ -29,11 +29,6 @@ export default {
     Footerbar,
     Navbar,
     Leftsider
-  },
-  data() {
-    return {
-      themeColor: 'secondary'
-    }
   }
 }
 </script>

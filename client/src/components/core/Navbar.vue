@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-toolbar slot="header" :color="themeColor">
+    <q-toolbar slot="header" :color="$store.getters.currentTheme">
       <q-btn flat @click="$parent.toggleLeft">
         <q-icon name="menu" />
       </q-btn>
@@ -28,7 +28,7 @@
     </q-toolbar>
 
     <!-- Navigation -->
-    <q-tabs slot="navigation" :color="themeColor" inverted>
+    <q-tabs slot="navigation" :color="$store.getters.currentTheme" inverted>
       <q-route-tab slot="title" icon="home" to="/" replace hide="icon" label="Home" />
       <q-route-tab slot="title" icon="map" to="/map" replace hide="icon" label="Map" />
     </q-tabs>
@@ -39,9 +39,6 @@
 import LangSwitch from 'common/LangSwitch'
 
 export default {
-  props: {
-    themeColor: ''
-  },
   components: {
     'lang-switch': LangSwitch
   },
