@@ -6,21 +6,16 @@ import i18n from './i18n'
 import App from './App'
 import store from './store'
 import router from './router'
-import 'quasar-framework/dist/quasar.mat.css'
 import Quasar, * as All from 'quasar-framework'
-
-// Optional
+import VeeValidate from 'vee-validate'
 import 'quasar-extras/roboto-font'
 import 'quasar-extras/material-icons'
+import 'quasar-framework/dist/quasar.mat.css'
 import './main.scss'
 
-Vue.use(Quasar, {
-  // Test only, not for production
-  directives: All,
-  components: All
-})
-
+Vue.use(Quasar, { directives: All, components: All })
 Vue.use(Vuex)
+Vue.use(VeeValidate)
 
 Vue.config.productionTip = false
 

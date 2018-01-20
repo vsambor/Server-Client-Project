@@ -39,6 +39,7 @@ module.exports = {
       'components': resolve('src/components'),
       'core': resolve('src/components/core'),
       'common': resolve('src/components/common'),
+      'mixin': resolve('src/components/common/mixin'),
       'private': resolve('src/components/private'),
       'public': resolve('src/components/public'),
       'services': resolve('src/services')
