@@ -8,22 +8,23 @@
         <span slot="subtitle">Server Client Project</span>
       </q-toolbar-title>
 
-      <!-- Login -->
+      <!-- Login button -->
       <q-btn flat @click="$router.push('/login')">
         <q-icon name="assignment ind" />
       </q-btn>
 
+      <!-- Register button -->
       <q-btn flat>
         <q-icon name="assignment" />
       </q-btn>
 
+      <!-- Logout button -->
       <q-btn flat>
         <q-icon name="exit to app" />
       </q-btn>
 
-      <q-btn flat>
-        <q-icon name="language" />
-      </q-btn>
+      <!-- Language switcher component -->
+      <lang-switch />
     </q-toolbar>
 
     <!-- Navigation -->
@@ -35,13 +36,17 @@
 </template>
 
 <script>
+import LangSwitch from 'common/LangSwitch'
+
 export default {
   props: {
     themeColor: ''
   },
+  components: {
+    'lang-switch': LangSwitch
+  },
   data() {
     return {}
-  },
-  methods: {}
+  }
 }
 </script>

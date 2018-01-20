@@ -38,6 +38,7 @@ module.exports = {
       '@': resolve('src'),
       'components': resolve('src/components'),
       'core': resolve('src/components/core'),
+      'common': resolve('src/components/common'),
       'private': resolve('src/components/private'),
       'public': resolve('src/components/public'),
       'services': resolve('src/services')
