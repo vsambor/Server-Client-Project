@@ -20,6 +20,9 @@ server-client-project is a class project.
 
 - To be defined...
 
+## Wiki
+[SCP documentation](https://github.com/vsambor/Server-Client-Project/wiki)
+
 ## Kanban
 [SCP dashboard](https://github.com/vsambor/Server-Client-Project/projects/1)
 
@@ -38,7 +41,7 @@ server-client-project is a class project.
 ## Frontend
 
 - [vue.js](https://vuejs.org/)
-- [element ui](http://element.eleme.io/#/en-US)
+- [quasar](http://quasar-framework.org/)
 - [webpack](https://webpack.js.org/)
 - [babel](https://babeljs.io/)
 - [sass](http://sass-lang.com/)

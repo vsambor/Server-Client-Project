@@ -1,5 +1,5 @@
 <template>
-  <q-layout ref="layout" view="hHr LpR lFf" :right-breakpoint="1100">
+  <q-layout ref="layout" view="hHr LpR lFf">
 
     <!-- Header -->
     <navbar slot="header" :themeColor="themeColor" />

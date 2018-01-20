@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-toolbar slot="header" :color="themeColor">
-      <q-btn flat @click="$parent.toggleLeft()">
+      <q-btn flat @click="$parent.toggleLeft">
         <q-icon name="menu" />
       </q-btn>
       <q-toolbar-title> SCP
@@ -45,8 +45,16 @@ export default {
   components: {
     'lang-switch': LangSwitch
   },
-  data() {
-    return {}
+  created() {
+    // Hides the left sider at the beginning.
+    this.$parent.hideLeft()
   }
 }
 </script>
+
+<style>
+/* Hides the page context to not be seen under navigation bar. */
+.q-tabs-inverted .q-tabs-head {
+  background: white;
+}
+</style>

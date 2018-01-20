@@ -1,5 +1,5 @@
 <template>
-  <div class="m-40">
+  <div>
     <h4 class="title">Welcome to Server Client Project (STP)!</h4>
     <div style="text-color: black;">{{ $t("general.hello") }}</div>
     or
