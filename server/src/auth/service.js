@@ -12,15 +12,16 @@ exports.login = (req, res) => {
     // Find user by email.
     UserModel.findOne({ 'email': email })
       .then(result => {
-        // Compares hashes.
-        bcrypt.compare(result.password, bcrypt.hashSync(password))
-          .then(() => {
-            res.status(200)
-            res.json({
-              token: jwt.encode({ id: result.id }, cfg.jwtSecret)
-            })
+        // If passwords match then responds with the token.
+        if (bcrypt.compareSync(password, result.password)) {
+          res.status(200)
+          res.json({
+            token: jwt.encode({ id: result.id }, cfg.jwtSecret),
+            user: result
           })
-          .catch((err) => res.status(401).send('Error: ' + err))
+        } else {
+          res.status(401).send('Error: please provide a good email and password.')
+        }
       })
       .catch((err) => res.status(400).send('Error: ' + err))
   } else {
