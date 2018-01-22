@@ -1,6 +1,7 @@
 <template>
   <q-btn flat ref="target">
     <q-icon name="language" />
+    <q-tooltip anchor="bottom left" self="top middle">{{$t('general.change_language')}}</q-tooltip>
     <q-popover ref="popover">
       <q-list class="q-list-link" style="min-width: 100px;">
 

@@ -9,11 +9,15 @@ export default new Vuex.Store({
   state: {
     shortAppName: 'SCP',
     appName: 'Server Client Project',
+    authToken: null,
     isLogged: false,
     currentUser: null,
     currentTheme: 'secondary'
   },
   mutations: {
+    setAuthToken(state, value) {
+      state.authToken = value
+    },
     setCurrentUser(state, value) {
       state.currentUser = value
       state.isLogged = true
@@ -22,11 +26,13 @@ export default new Vuex.Store({
       state.currentTheme = value
     },
     logout(state) {
+      state.authToken = null
       state.isLogged = false
       state.currentUser = null
     }
   },
   getters: {
+    authToken: state => state.authToken,
     isLogged: state => state.isLogged,
     currentUser: state => state.currentUser,
     currentTheme: state => state.currentTheme

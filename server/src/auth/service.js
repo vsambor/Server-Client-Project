@@ -14,6 +14,9 @@ exports.login = (req, res) => {
       .then(result => {
         // If passwords match then responds with the token.
         if (bcrypt.compareSync(password, result.password)) {
+          // Removes sensitive data from user object, before sending it to the client.
+          result.password = null
+
           res.status(200)
           res.json({
             token: jwt.encode({ id: result.id }, cfg.jwtSecret),
@@ -27,4 +30,9 @@ exports.login = (req, res) => {
   } else {
     res.status(400)
   }
+}
+
+exports.logout = (req, res) => {
+  console.log('logout!')
+  res.status(200).end()
 }

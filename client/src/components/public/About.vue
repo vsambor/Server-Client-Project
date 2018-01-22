@@ -1,5 +1,5 @@
 <template>
-    <h4>SCP Profile</h4>
+    <h4>About this app</h4>
 </template>
 
 <script>
