@@ -14,7 +14,7 @@
       </q-btn>
 
       <!-- Register button -->
-      <q-btn flat>
+      <q-btn flat @click="$router.push('/register')">
         <q-icon name="assignment" />
       </q-btn>
 

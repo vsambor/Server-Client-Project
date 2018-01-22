@@ -1,47 +1,52 @@
 <template>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-grey">Register</h3>
-          <p class="subtitle has-text-grey">Please enter your information.</p>
-          <div class="box">
-            <form>
-              <!-- Email -->
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="email" placeholder="Your Email" v-model="user.email">
-                </div>
-              </div>
+  <div class="row justify-center">
+    <div class="col-12 col-sm-8 col-md-5">
+      <q-card>
+        <q-card-title>{{$t('registration.title')}}</q-card-title>
+        <q-card-separator />
+        <q-card-main>
+          <form>
+            <!-- Email -->
+            <q-field icon="mail" :error="errors.has('email')" :error-label="errors.first('email')">
+              <q-input type="email" v-model="user.email" v-validate="'required|email'" name="email" :float-label="star($t('attributes.email'))" />
+            </q-field>
 
-              <!-- Password -->
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="password" placeholder="Your Password" v-model="user.password">
-                </div>
-              </div>
+            <!-- Password -->
+            <q-field icon="lock" :error="errors.has('password')" :error-label="errors.first('password')">
+              <q-input type="password" v-model="user.password" v-validate="'required|min:5'" name="password" :float-label="star($t('attributes.password'))"></q-input>
+            </q-field>
 
-              <!-- Password Confirmation -->
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="password" placeholder="Confirm password" v-model="user.confirmPassword">
-                </div>
-              </div>
+            <!-- Confirmation Password -->
+            <q-field icon="lock" :error="errors.has('confirm_password')" :error-label="errors.first('confirm_password')">
+              <q-input type="password" v-model="user.confirmPassword" v-validate="'confirmed:password'" name="confirm_password" :float-label="star($t('attributes.confirm_password'))"></q-input>
+            </q-field>
+          </form>
+        </q-card-main>
 
-              <!-- Register Button -->
-              <a class="button is-block is-info" @click="onRegister">Register</a>
-            </form>
+        <q-card-separator/>
+
+        <!-- Buttons -->
+        <q-card-actions>
+          <q-btn @click="validateAndSubmit" :disabled="errors.any()" icon-right="forward" :color="$store.getters.currentTheme" type="submit" class="full-width">{{$t('general.register')}}</q-btn>
+          <div class="row full-width justify-center mt-10">
+            <q-btn flat color="primary" @click="resetAndClearErrors">{{$t('general.reset')}}</q-btn>
+            <q-btn flat color="primary" @click="$router.push('/login')">{{$t('general.login')}}</q-btn>
           </div>
-        </div>
-      </div>
+        </q-card-actions>
+      </q-card>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 import UserService from 'services/UserService'
+import FormMixin from 'mixin/FormMixin'
+import { Alert, Toast } from 'quasar-framework'
+import 'quasar-extras/animate/bounceInRight.css'
+import 'quasar-extras/animate/bounceOutRight.css'
 
 export default {
+  mixins: [FormMixin],
   data() {
     return {
       user: {
@@ -52,55 +57,28 @@ export default {
     }
   },
   methods: {
-    onRegister() {
-      UserService.register(this.user).then(response => {
-        console.log(response.data)
-        this.response = response.data
-      })
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    submitForm() {
+      const vm = this
+      UserService.register(this.user)
+        .then(response => {
+          Toast.create.positive(vm.$t('registration.registration_ok'))
+          this.$router.push('/login')
+        })
+        .catch(err => {
+          Alert.create({
+            enter: 'bounceInRight',
+            leave: 'bounceOutRight',
+            color: 'negative',
+            icon: 'error',
+            html: vm.$t('registration.registration_failed') + err,
+            position: 'top-center'
+          })
+        })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-html,
-body {
-  font-family: 'Open Sans', serif;
-  font-size: 14px;
-  font-weight: 300;
-}
-.hero.is-success {
-  background: #f2f6fa;
-}
-.hero .nav,
-.hero.is-success .nav {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
 
-.avatar {
-  margin-top: -70px;
-  padding-bottom: 20px;
-}
-.avatar img {
-  padding: 5px;
-  background: #fff;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.1);
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-}
-input {
-  font-weight: 300;
-}
-p {
-  font-weight: 700;
-}
-p.subtitle {
-  padding-top: 1rem;
-}
 </style>

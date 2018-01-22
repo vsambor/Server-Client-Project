@@ -38,9 +38,12 @@ export default {
      * Changes the new language in the vue-i18n locale and closes the popup.
      */
     onLanguageIconClick(selectedLanguage) {
+      const vm = this
       if (this.$i18n.locale !== selectedLanguage) {
         Toast.create({
-          html: `Language changed to ${selectedLanguage}`,
+          html:
+            vm.$t('general.language_changed') +
+            vm.$t('general.' + selectedLanguage),
           icon: 'language'
         })
         this.$i18n.locale = selectedLanguage

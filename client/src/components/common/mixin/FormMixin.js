@@ -24,6 +24,8 @@ export default {
     resetAndClearErrors() {
       if (this.resetForm) {
         this.resetForm()
+      } else {
+        this.defaultResetForm()
       }
 
       setTimeout(() => this.errors.clear(), 50)
@@ -37,6 +39,17 @@ export default {
      */
     star(label) {
       return `${label} <span style="color:red; vertical-align: sub; font-size: 18px;">*</span>`
+    },
+
+    /**
+     * Resets components data to initial state.
+     *
+     * When there is no <resetForm> method on attached to the component (exactly with this name), then this default reset is applied.
+     * The component data object is initialized with the initial component data which is stored in $options.data.
+     * The apply(this) is used to keep the context of data (usefull when data uses <this> keyword).
+     */
+    defaultResetForm() {
+      Object.assign(this.$data, this.$options.data.apply(this))
     }
   }
 }
