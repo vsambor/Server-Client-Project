@@ -8,18 +8,24 @@ module.exports = {
     no: 'Nu',
     map: 'Hartă',
     home: 'Acasă',
+    dashboard: 'tablou de bord',
     profile: 'Profil',
     about: 'Despre',
     settings: 'Setări',
     notifications: 'Notificări',
+    back: 'Înapoi',
     login: 'Conectare',
+    logout: 'Deconectare',
     reset: 'Resetează',
     register: 'Înregistrare',
     forgot_password: 'Parolă uitată',
-    language_changed: 'Limba schimbată în: '
+    language_changed: 'Limba schimbată în: ',
+    change_language: 'Schimbă Limba'
   },
   login: {
-    title: 'Conectare'
+    title: 'Conectare',
+    login_ok: 'Logat cu succes!',
+    login_failed: 'Probleme la logare: '
   },
   registration: {
     title: 'Înregistrare',

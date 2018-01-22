@@ -1,5 +1,5 @@
 <template>
-    <h4>SCP Profile</h4>
+    <h4>SCP Settings</h4>
 </template>
 
 <script>

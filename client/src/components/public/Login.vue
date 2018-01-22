@@ -33,6 +33,10 @@
 
 <script>
 import FormMixin from 'mixin/FormMixin'
+import AuthService from 'services/AuthService'
+import { Alert, Toast } from 'quasar-framework'
+import 'quasar-extras/animate/bounceInRight.css'
+import 'quasar-extras/animate/bounceOutRight.css'
 
 export default {
   mixins: [FormMixin],
@@ -44,7 +48,24 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log('submitted!')
+      const vm = this
+      AuthService.login({ email: this.email, password: this.password })
+        .then(res => {
+          this.$store.commit('setAuthToken', res.data.token)
+          this.$store.commit('setCurrentUser', res.data.user)
+          Toast.create.positive(vm.$t('login.login_ok'))
+          this.$router.push('/dashboard')
+        })
+        .catch(err => {
+          Alert.create({
+            enter: 'bounceInRight',
+            leave: 'bounceOutRight',
+            color: 'negative',
+            icon: 'error',
+            html: vm.$t('login.login_failed') + err,
+            position: 'top-center'
+          })
+        })
     }
   }
 }

@@ -9,18 +9,22 @@
       </q-toolbar-title>
 
       <!-- Login button -->
-      <q-btn flat @click="$router.push('/login')">
+      <q-btn v-if="!$store.getters.isLogged" flat @click="$router.push('/login')">
         <q-icon name="assignment ind" />
+        <q-tooltip>{{$t('general.login')}}</q-tooltip>
       </q-btn>
 
       <!-- Register button -->
-      <q-btn flat @click="$router.push('/register')">
+      <q-btn v-if="!$store.getters.isLogged" flat @click="$router.push('/register')">
         <q-icon name="assignment" />
+        <q-tooltip>{{$t('general.register')}}</q-tooltip>
       </q-btn>
 
       <!-- Logout button -->
-      <q-btn flat>
+
+      <q-btn v-if="$store.getters.isLogged" @click="onLogout" flat>
         <q-icon name="exit to app" />
+        <q-tooltip>{{$t('general.logout')}}</q-tooltip>
       </q-btn>
 
       <!-- Language switcher component -->
@@ -30,13 +34,15 @@
     <!-- Navigation -->
     <q-tabs slot="navigation" :color="$store.getters.currentTheme" inverted>
       <q-route-tab slot="title" icon="home" to="/" replace hide="icon" :label="$t('general.home')" />
-      <q-route-tab slot="title" icon="map" to="/map" replace hide="icon" :label="$t('general.map')" />
+      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="dashboard" to="dashboard" replace hide="icon" :label="$t('general.dashboard')" />
+      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="map" to="map" replace hide="icon" :label="$t('general.map')" />
     </q-tabs>
   </div>
 </template>
 
 <script>
 import LangSwitch from 'common/LangSwitch'
+import { Toast } from 'quasar-framework'
 
 export default {
   components: {
@@ -45,6 +51,13 @@ export default {
   created() {
     // Hides the left sider at the beginning.
     this.$parent.hideLeft()
+  },
+  methods: {
+    onLogout() {
+      this.$store.commit('logout')
+      Toast.create.positive('Successfully logged out!')
+      this.$router.push('/home')
+    }
   }
 }
 </script>

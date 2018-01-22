@@ -1,16 +1,16 @@
 <template>
   <q-list no-border link inset-separator>
     <q-list-header>User menu</q-list-header>
-    <q-side-link item to="/profile">
+    <q-side-link v-if="$store.getters.isLogged" item to="/profile">
       <q-item-side icon="account circle" />
       <q-item-main :label="$t('general.profile')" sublabel="User profile" />
     </q-side-link>
-    <q-side-link item to="/forum">
+    <q-side-link v-if="$store.getters.isLogged" item to="/notifications">
       <q-item-side icon="event available" />
       <q-item-main :label="$t('general.notifications')" sublabel="Check all notifications" />
     </q-side-link>
 
-    <q-side-link item to="/settings">
+    <q-side-link v-if="$store.getters.isLogged" item to="/settings">
       <q-item-side icon="settings" />
       <q-item-main :label="$t('general.settings')" sublabel="User settings" />
     </q-side-link>

@@ -18,7 +18,7 @@
 
             <!-- Confirmation Password -->
             <q-field icon="lock" :error="errors.has('confirm_password')" :error-label="errors.first('confirm_password')">
-              <q-input type="password" v-model="user.confirmPassword" v-validate="'confirmed:password'" name="confirm_password" :float-label="star($t('attributes.confirm_password'))"></q-input>
+              <q-input type="password" v-model="user.confirmPassword" v-validate="'confirmed:password|required'" name="confirm_password" :float-label="star($t('attributes.confirm_password'))"></q-input>
             </q-field>
           </form>
         </q-card-main>
