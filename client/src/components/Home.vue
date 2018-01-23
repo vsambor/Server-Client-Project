@@ -1,11 +1,9 @@
 <template>
   <div>
     <h4 class="title">Welcome to Server Client Project (STP)!</h4>
-    <div style="text-color: black;">{{ $t("general.hello") }}</div>
+    <div style="text-color: black;">{{ $i18n.t("general.yes") }}</div>
     or
-    <div style="text-color: black;">{{ $i18n.t("general.hello") }}</div>
-    or
-    <div style="text-color: black;">{{ $i18n.messages.fr.general.hello }}</div>
+    <div style="text-color: black;">{{ $i18n.messages.fr.general.no }}</div>
   </div>
 </template>
 

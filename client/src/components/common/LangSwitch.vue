@@ -18,6 +18,7 @@
 
 <script>
 import { Toast } from 'quasar-framework'
+import { Validator } from 'vee-validate'
 
 export default {
   data() {
@@ -47,6 +48,7 @@ export default {
           icon: 'language'
         })
         this.$i18n.locale = selectedLanguage
+        Validator.localize(selectedLanguage)
       }
 
       this.$refs.popover.close()

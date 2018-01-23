@@ -2,8 +2,16 @@ module.exports = {
   general: {
     en: 'English',
     fr: 'French',
+    ro: 'Romanian',
+    ar: 'Arabian',
     yes: 'Yes',
     no: 'No',
+    map: 'Map',
+    home: 'Home',
+    profile: 'Profile',
+    about: 'About',
+    settings: 'Settings',
+    notifications: 'Notifications',
     login: 'Login',
     reset: 'Reset',
     register: 'Register',
@@ -22,6 +30,8 @@ module.exports = {
     email: 'E-mail',
     password: 'Password',
     confirm_password: 'Confirm Password'
-
+  },
+  footer: {
+    rights: 'All rights reserved'
   }
 }
