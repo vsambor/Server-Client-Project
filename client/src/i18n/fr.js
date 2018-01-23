@@ -2,8 +2,16 @@ module.exports = {
   general: {
     en: 'Anglais',
     fr: 'Français',
+    ro: 'Roumain',
+    ar: 'Arabe',
     yes: 'Oui',
     no: 'Non',
+    map: 'Carte',
+    home: 'Maison',
+    profile: 'Profil',
+    about: 'Info',
+    settings: 'Paramètres',
+    notifications: 'Notifications',
     login: 'Se connecter',
     reset: 'Réinitialiser',
     register: 'Inscription',
@@ -22,5 +30,8 @@ module.exports = {
     email: 'E-mail',
     password: 'Mot de passe',
     confirm_password: 'Confirmation du mdp'
+  },
+  footer: {
+    rights: 'Tous les droits sont réservés'
   }
 }

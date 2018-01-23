@@ -4,8 +4,8 @@
       <q-btn flat @click="$parent.toggleLeft">
         <q-icon name="menu" />
       </q-btn>
-      <q-toolbar-title> SCP
-        <span slot="subtitle">Server Client Project</span>
+      <q-toolbar-title> {{$store.state.shortAppName}}
+        <span slot="subtitle">{{$store.state.appName}}</span>
       </q-toolbar-title>
 
       <!-- Login button -->
@@ -29,8 +29,8 @@
 
     <!-- Navigation -->
     <q-tabs slot="navigation" :color="$store.getters.currentTheme" inverted>
-      <q-route-tab slot="title" icon="home" to="/" replace hide="icon" label="Home" />
-      <q-route-tab slot="title" icon="map" to="/map" replace hide="icon" label="Map" />
+      <q-route-tab slot="title" icon="home" to="/" replace hide="icon" :label="$t('general.home')" />
+      <q-route-tab slot="title" icon="map" to="/map" replace hide="icon" :label="$t('general.map')" />
     </q-tabs>
   </div>
 </template>

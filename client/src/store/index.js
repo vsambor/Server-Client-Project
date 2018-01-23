@@ -7,6 +7,8 @@ export default new Vuex.Store({
   // When there are multiple store modules.
   // modules: {},
   state: {
+    shortAppName: 'SCP',
+    appName: 'Server Client Project',
     isLogged: false,
     currentUser: null,
     currentTheme: 'secondary'

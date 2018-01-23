@@ -1,7 +1,7 @@
 <template>
   <q-toolbar :color="$store.getters.currentTheme">
     <q-toolbar-title>
-      2018 © Server Client Project. All rights reserved.
+      {{(new Date()).getFullYear()}} © {{$store.state.appName}}. {{$t('footer.rights')}}
       <i class="fa fa-github"></i>
     </q-toolbar-title>
   </q-toolbar>
