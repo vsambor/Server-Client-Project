@@ -14,7 +14,7 @@ server-client-project is a class project.
 ![express](https://img.shields.io/badge/express-4.16.x-orange.svg)
 ![VueJS 2](https://img.shields.io/badge/vuejs-2.5.x-brightgreen.svg)
 ![Webpack 3](https://img.shields.io/badge/webpack-3.6.x-blue.svg)
-![Element-UI 2](https://img.shields.io/badge/element-2.0-ff69b4.svg)
+![Quasar](https://img.shields.io/badge/quasar-0.14.7-ff69b4.svg)
 
 ## Features
 
@@ -151,3 +151,14 @@ $ npm run client-unit-test
 ```
 $ npm run client-e2e-test
 ```
+
+# Misc
+
+**Continuous Integration**
+- [Travis CI](https://travis-ci.org)
+
+**Code Mentainability**
+- [Code Climate](https://codeclimate.com/)
+
+**Deployment**
+- [Docker](https://www.docker.com/)
