@@ -17,6 +17,14 @@ import en from 'vee-validate/dist/locale/en'
 import fr from 'vee-validate/dist/locale/fr'
 import ro from 'vee-validate/dist/locale/ro'
 import ar from 'vee-validate/dist/locale/ar'
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBa2imAC4TU9EHdK4YAV8PDy5Lzy7a7Lek',
+    libraries: 'places, places, drawing, visualization'
+  }
+})
 
 Vue.use(Quasar, { directives: All, components: All })
 Vue.use(Vuex)
