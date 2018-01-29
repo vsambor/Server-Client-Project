@@ -39,5 +39,13 @@ module.exports = {
   },
   footer: {
     rights: 'كل الحقوق محفوظة'
+  },
+  settings: {
+    title_settings: 'General settings',
+    title_geolocation: 'Geolocation',
+    title_theme: 'Application theme',
+    title_notification: 'Notification',
+    title_proximity: 'Proximity',
+    title_zoom: 'Zoom'
   }
 }
