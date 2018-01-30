@@ -43,7 +43,7 @@ const schema = mongoose.Schema({
     nationality: { type: String },
     picture: { type: String }
   },
-  vehicle: {
+  vehicles: [{
     type: {
       type: String,
       enum: {
@@ -54,7 +54,7 @@ const schema = mongoose.Schema({
     model: { type: String },
     registrationNumber: { type: String },
     color: { type: String }
-  },
+  }],
   settings: {
     showNotification: { type: Boolean, default: true },
 

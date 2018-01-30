@@ -1,49 +1,53 @@
 {
-	"success": {
-		"add": "Added successfully.",
-		"update": "Updated successfully",
-		"delete": "Removed successfully."
-	},
-	"error": {
-		"internal": "Internal error. Please contact the administrator.",
-		"type": {
-			"generic": "Generic Error",
-			"validation": "Validation error",
-			"mongo": "Database Error"
-		},
-		"validation": {
-			"fieldType": {
-				"number": "The field should be a number: ",
-				"string": "The field should be a string: ",
-				"boolean": "The field should be a boolean: ",
-				"enum": "The field should be one of the following: %s"
-			},
-			"email": {
-				"required": "Email address is required.",
-				"invalid": "Email is invalid."
-			},
-			"password": {
-				"required": "Password is required.",
-				"min_length": "Password too short! (min %s characters)."
-			}
-		},
-		"mongo": {
-			"duplicated": "The field already exists: %s"
-		}
-	},
-	"general": {
-		"home": "Please check /api routes."
-	},
-	"mail": {
-		"activation": "Bonjour, merci de verifier le lien ci-dessous: %s ",
-		"subjects": {
-			"userCreated": "Your profile has been created"
-		},
-		"subject": {
-			"userCreated": "mail.subject.userCreated"
-		}
-	},
-	"user": {
-		"activation": "User has been activated"
-	}
+  "success": {
+    "add": "Added successfully.",
+    "update": "Updated successfully",
+    "delete": "Removed successfully."
+  },
+  "error": {
+    "internal": "Internal error. Please contact the administrator.",
+    "type": {
+      "generic": "Generic Error",
+      "validation": "Validation error",
+      "mongo": "Database Error"
+    },
+    "validation": {
+      "fieldType": {
+        "number": "The field should be a number: ",
+        "string": "The field should be a string: ",
+        "boolean": "The field should be a boolean: ",
+        "enum": "The field should be one of the following: %s"
+      },
+      "email": {
+        "required": "Email address is required.",
+        "invalid": "Email is invalid."
+      },
+      "password": {
+        "required": "Password is required.",
+        "min_length": "Password too short! (min %s characters)."
+      },
+      "lat": {
+        "required": "Latitude is required."
+      },
+      "lng": {
+        "required": "Longitude is required."
+      }
+    },
+    "mongo": {
+      "duplicated": "The field already exists: %s"
+    }
+  },
+  "general": {
+    "home": "Please check /api routes.",
+    "notFound": "Not Found"
+  },
+  "mail": {
+    "activation": "Bonjour, merci de verifier le lien ci-dessous: %s ",
+    "subject": {
+      "userCreated": "Your profile has been created"
+    }
+  },
+  "user": {
+    "activation": "User has been activated"
+  }
 }

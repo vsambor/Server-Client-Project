@@ -25,6 +25,12 @@
 			"password": {
 				"required": "Password is required.",
 				"min_length": "Password too short! (min %s characters)."
+			},
+			"lat": {
+				"required": "Latitude is required."
+			},
+			"lng": {
+				"required": "Longitude is required."
 			}
 		},
 		"mongo": {
@@ -32,11 +38,12 @@
 		}
 	},
 	"general": {
-		"home": "Please check /api routes."
+		"home": "Please check /api routes.",
+		"notFound": "Not Found"
 	},
 	"mail": {
-		"activation": "Hello, please check below the activation link: %s ",
-		"subjects": {
+		"activation": "Hello, please check the following link: %s ",
+		"subject": {
 			"userCreated": "Your profile has been created"
 		}
 	},
