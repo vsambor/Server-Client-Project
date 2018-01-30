@@ -1,9 +1,9 @@
 const service = require('./service')
 
 module.exports = (app) => {
-  app.post('/api/user', service.add)
+  app.post('/api/users', service.add)
   app.get('/api/users', service.findAll)
-  app.get('/api/user/:id', service.findById)
-  app.put('/api/user/:id', service.update)
-  app.delete('/api/user/:id', service.delete)
+  app.get('/api/users/:id', service.findById)
+  app.put('/api/users/:id', service.update)
+  app.delete('/api/users/:id', service.delete)
 }
