@@ -7,6 +7,24 @@ exports.add = (req, res) => {
     password: bcrypt.hashSync(req.body.password),
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    role: req.body.role,
+    profile: {
+      firstName: req.body.profile.firstName,
+      lastName: req.body.profile.lastName,
+      age: req.body.profile.age,
+      nationality: req.body.profile.nationality,
+      picture: req.body.profile.picture
+    },
+    vehicle: {
+      type: req.body.vehicle.type,
+      model: req.body.vehicle.model,
+      registrationNumber: req.body.vehicle.registrationNumber,
+      color: req.body.vehicle.color
+    },
+    settings: {
+      showNotification: req.body.settings.showNotification,
+      alertProximity: req.body.settings.alertProximity
+    },
     isActive: req.body.isActive
   })
 
