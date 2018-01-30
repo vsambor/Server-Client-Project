@@ -35,6 +35,12 @@
 		"home": "Please check /api routes."
 	},
 	"mail": {
-		"activation": "Hello, please check below the activation link: %s "
+		"activation": "Hello, please check below the activation link: %s ",
+		"subjects": {
+			"userCreated": "Your profile has been created"
+		}
+	},
+	"user": {
+		"activation": "User has been activated"
 	}
 }
