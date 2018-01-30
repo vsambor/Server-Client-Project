@@ -61,7 +61,8 @@ const schema = mongoose.Schema({
     // Distance in km.
     alertProximity: { type: Number, default: 10 }
   },
-  isActive: { type: Boolean, default: true }
+  token: { type: String },
+  isActive: { type: Boolean, default: false }
 }, { timestamps: {} }) // The timestamps adds 2 fields; createdAt and updatedAt in the database.
 
 module.exports = mongoose.model('user', schema)

@@ -37,6 +37,17 @@ require('./routes')(app)
 // Connects to the database.
 require('./database.js')(process.env.DATABASE_URL || config.db.url)
 
+// Generate test SMTP service account from ethereal.email
+// Only needed if you don't have a real mail account for testing
+
+/*
+transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+    console.error('Unable to send email: ' + err)
+  } else {
+    console.log('Email message was sent' + info.response)
+  }
+}) */
 exports.start = () => {
   app.listen(port, () => console.log(`Running App Version ${packageJson.version} on port ${port} in ${env} mode`))
 }

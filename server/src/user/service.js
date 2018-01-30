@@ -1,10 +1,16 @@
 const UserModel = require('./model')
 const bcrypt = require('bcryptjs')
 const errorHandler = require('../util/errorUtil')
+const mailer = require('../services/mailer')
+const crypto = require('crypto')
 
 exports.add = (req, res) => {
+  const currentDate = (new Date()).valueOf().toString()
+  const random = Math.random().toString()
+  const token = crypto.createHash('sha1').update(currentDate + random).digest('hex')
   let newUser = new UserModel({
     email: req.body.email,
+    token: token,
     password: bcrypt.hashSync(req.body.password),
     role: req.body.role,
     profile: {
@@ -28,11 +34,14 @@ exports.add = (req, res) => {
   })
 
   newUser.save(newUser)
-    .then(() => res.json(201, {
-      success: true,
-      message: res.__('success.add'),
-      user: newUser
-    }))
+    .then(() => {
+      mailer.send(newUser.email, 'User created', '<h2> Hello the user has been created successfully </h2> <a href="http://localhost:8081/auth/' + newUser.token + '"')
+      res.json(201, {
+        success: true,
+        message: res.__('success.add'),
+        user: newUser
+      })
+    })
     .catch(err => errorHandler.handle(err, res))
 }
 
@@ -69,4 +78,10 @@ exports.delete = (req, res) => {
       message: res.__('success.delete')
     }))
     .catch((err) => errorHandler.handle(err, res))
+}
+
+exports.activate = (req, res) => {
+  UserModel.findOneAndUpdate({ token: req.params.token }, { isActive: true, token: '' })
+    .then(result => res.status(202).send(result))
+    .catch((err) => res.status(400).send('Error' + err))
 }
