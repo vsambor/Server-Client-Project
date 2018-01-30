@@ -33,5 +33,8 @@
 	},
 	"general": {
 		"home": "Please check /api routes."
+	},
+	"mail": {
+		"activation": "Hello, please check below the activation link: %s "
 	}
 }
