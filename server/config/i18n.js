@@ -4,7 +4,8 @@ const path = require('path')
 i18n.configure({
   locales: ['en', 'fr'],
   directory: path.join(__dirname, '../src/i18n/'),
-  defaultLocale: 'en'
+  defaultLocale: 'en',
+  objectNotation: true
 })
 
 module.exports = i18n

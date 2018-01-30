@@ -1,12 +1,11 @@
 const UserModel = require('./model')
 const bcrypt = require('bcryptjs')
+const errorHandler = require('../util/errorUtil')
 
 exports.add = (req, res) => {
   let newUser = new UserModel({
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password),
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
     role: req.body.role,
     profile: {
       firstName: req.body.profile.firstName,
@@ -29,30 +28,45 @@ exports.add = (req, res) => {
   })
 
   newUser.save(newUser)
-    .then(() => res.json(201, newUser))
-    .catch((err) => res.status(400).send('Error: ' + err))
+    .then(() => res.json(201, {
+      success: true,
+      message: res.__('success.add'),
+      user: newUser
+    }))
+    .catch(err => errorHandler.handle(err, res))
 }
 
 exports.findAll = (req, res) => {
   UserModel.find({})
-    .then(result => res.status(200).send(result))
-    .catch((err) => res.status(400).send('Error: ' + err))
+    .then(result => res.status(200).send({
+      success: true,
+      count: result.length,
+      users: result
+    }))
+    .catch((err) => errorHandler.handle(err, res))
 }
 
 exports.findById = (req, res) => {
   UserModel.findById(req.params.id)
     .then(result => res.status(200).send(result))
-    .catch((err) => res.status(400).send('Error: ' + err))
+    .catch((err) => errorHandler.handle(err, res))
 }
 
 exports.update = (req, res) => {
   UserModel.findOneAndUpdate(req.params.id, req.body, { upsert: true, new: true })
-    .then(result => res.status(202).send(result))
-    .catch((err) => res.status(400).send('Error: ' + err))
+    .then(result => res.status(202).send({
+      success: true,
+      message: res.__('success.update'),
+      data: result
+    }))
+    .catch((err) => errorHandler.handle(err, res))
 }
 
 exports.delete = (req, res) => {
   UserModel.findByIdAndRemove(req.params.id)
-    .then(result => res.status(204).send({ message: 'removed' }))
-    .catch((err) => res.status(400).send('Error: ' + err))
+    .then(result => res.status(200).send({
+      success: true,
+      message: res.__('success.delete')
+    }))
+    .catch((err) => errorHandler.handle(err, res))
 }
