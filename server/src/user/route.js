@@ -6,5 +6,5 @@ module.exports = (app) => {
   app.get('/api/users/:id', service.findById)
   app.put('/api/users/:id', service.update)
   app.delete('/api/users/:id', service.delete)
-  app.get('/auth/:token', service.activate)
+  app.get('/users/activation/:token', service.activate)
 }
