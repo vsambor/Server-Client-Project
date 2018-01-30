@@ -5,35 +5,14 @@ const mailer = require('../services/mailer')
 const crypto = require('crypto')
 
 exports.add = (req, res) => {
-  let newUser = new UserModel({
-    email: req.body.email,
-    token: crypto.createHash('sha1').update(Date.now().toString() + Math.random().toString()).digest('hex'),
-    password: bcrypt.hashSync(req.body.password),
-    role: req.body.role,
-    profile: {
-      firstName: req.body.profile.firstName,
-      lastName: req.body.profile.lastName,
-      age: req.body.profile.age,
-      nationality: req.body.profile.nationality,
-      picture: req.body.profile.picture
-    },
-    vehicle: {
-      type: req.body.vehicle.type,
-      model: req.body.vehicle.model,
-      registrationNumber: req.body.vehicle.registrationNumber,
-      color: req.body.vehicle.color
-    },
-    settings: {
-      showNotification: req.body.settings.showNotification,
-      alertProximity: req.body.settings.alertProximity
-    },
-    isActive: req.body.isActive
-  })
+  let newUser = new UserModel(req.body)
+  newUser.token = crypto.createHash('sha1').update(Date.now().toString() + Math.random().toString()).digest('hex')
+  newUser.password = bcrypt.hashSync(newUser.password)
 
   newUser.save(newUser)
     .then(() => {
-      mailer.send(newUser.email, res.__('mail.subjects.userCreated'), res.__('mail.activation', 'http://localhost:8081/users/activation/' + newUser.token))
-      res.json(201, {
+      mailer.send(newUser.email, res.__('mail.subject.userCreated'), res.__('mail.activation', 'http://localhost:8081/users/activation/' + newUser.token))
+      res.status(201).json({
         success: true,
         message: res.__('success.add'),
         user: newUser
@@ -44,26 +23,34 @@ exports.add = (req, res) => {
 
 exports.findAll = (req, res) => {
   UserModel.find({})
-    .then(result => res.status(200).send({
-      success: true,
-      count: result.length,
-      users: result
-    }))
+    .then(users => {
+      // Cleans all users password before sending to client (for security reasons).
+      users.forEach(user => (user.password = null))
+
+      res.status(200).send({
+        success: true,
+        count: users.length,
+        users: users
+      })
+    })
     .catch((err) => errorHandler.handle(err, res))
 }
 
 exports.findById = (req, res) => {
   UserModel.findById(req.params.id)
-    .then(result => res.status(200).send(result))
+    .then(user => {
+      user.password = null
+      res.status(200).send({ success: true, user: user })
+    })
     .catch((err) => errorHandler.handle(err, res))
 }
 
 exports.update = (req, res) => {
   UserModel.findOneAndUpdate(req.params.id, req.body, { upsert: true, new: true })
-    .then(result => res.status(202).send({
+    .then(user => res.status(202).send({
       success: true,
       message: res.__('success.update'),
-      data: result
+      user: user
     }))
     .catch((err) => errorHandler.handle(err, res))
 }
@@ -84,5 +71,25 @@ exports.activate = (req, res) => {
       message: res._('user.activation'),
       data: result
     }))
-    .catch((err) => res.status(400).send('Error' + err))
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.addVehicle = (req, res) => {
+  UserModel.findByIdAndUpdate(req.params.id, { $push: { vehicles: req.body } }, { safe: true, upsert: true, new: true })
+    .then((result) => res.status(201).json({
+      success: true,
+      message: res.__('success.add'),
+      user: result
+    }))
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.deleteVehicle = (req, res) => {
+  UserModel.findByIdAndUpdate(req.params.id, { $pull: { vehicles: { _id: req.params.vehicleId } } }, { new: true })
+    .then(result => res.status(200).json({
+      success: true,
+      message: res.__('success.delete'),
+      user: result
+    }))
+    .catch(err => errorHandler.handle(err, res))
 }
