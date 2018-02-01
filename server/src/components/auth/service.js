@@ -1,7 +1,7 @@
 const UserModel = require('../user/model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jwt-simple')
-const cfg = require('../../config/auth')
+const cfg = require('../../../config/auth')
 
 exports.login = (req, res) => {
   // Checks if the body contains an email and a password.

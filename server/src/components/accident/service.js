@@ -1,5 +1,5 @@
 const AccidentModel = require('./model')
-const errorHandler = require('../util/errorUtil')
+const errorHandler = require('../../common/util/errorUtil')
 
 exports.add = (req, res) => {
   let newAccident = new AccidentModel(req.body)

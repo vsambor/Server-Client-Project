@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const { RoleEnum, VehicleEnum } = require('../util/enums')
-const i18n = require('../../config/i18n')
+const { RoleEnum, VehicleEnum } = require('../../common/util/enums')
+const i18n = require('../../../config/i18n')
 
 const schema = mongoose.Schema({
   email: {
