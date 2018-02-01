@@ -1,6 +1,6 @@
 const passport = require('passport')
 const passportJWT = require('passport-jwt')
-const User = require('../src/user/model')
+const User = require('../src/components/user/model')
 const config = require('../config/auth')
 
 const ExtractJwt = passportJWT.ExtractJwt

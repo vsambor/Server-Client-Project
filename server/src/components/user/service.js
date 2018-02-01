@@ -1,7 +1,7 @@
 const UserModel = require('./model')
 const bcrypt = require('bcryptjs')
-const errorHandler = require('../util/errorUtil')
-const mailer = require('../services/mailer')
+const errorHandler = require('../../common/util/errorUtil')
+const mailer = require('../../common/service/mailer')
 const crypto = require('crypto')
 
 exports.add = (req, res) => {
