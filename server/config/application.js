@@ -35,7 +35,7 @@ app.use(auth().initialize())
 require('./routes')(app)
 
 // Connects to the database.
-require('./database.js')(process.env.DATABASE_URL || config.db.url)
+require('./database.js').connect(process.env.DATABASE_URL || config.db.url)
 
 exports.start = () => {
   app.listen(port, () => console.log(`Running App Version ${packageJson.version} on port ${port} in ${env} mode`))
