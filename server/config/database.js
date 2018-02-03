@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
 
-function connect(uri) {
+exports.connect = (uri) => {
   mongoose.Promise = global.Promise
   mongoose.connect(uri, { useMongoClient: true })
-    .then(() => console.log(`Mongoose connected at ${uri}`))
-    .catch(() => console.error('Database connection error'))
-}
+    .then((res) => {
+      console.log(`Mongoose connected at ${uri}`)
 
-module.exports = connect
+      // The main populator handles the database population.
+      require('../src/common/populator/mainPopulator').populate()
+    })
+    .catch((err) => console.error('Database connection error' + err))
+}
