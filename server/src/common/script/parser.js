@@ -21,8 +21,10 @@ exports.populate = () => {
     if (data.fields.coord != null) {
       count++
       const accident = new AccidentModel({
-        lat: data.fields.coord[0],
-        lng: data.fields.coord[1],
+        position: {
+          lat: data.fields.coord[0],
+          lng: data.fields.coord[1]
+        },
         severity: data.fields.grav
       })
       accident.save(accident).then(() => { }).catch(err => console.error(err))

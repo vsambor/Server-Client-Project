@@ -8,6 +8,6 @@ export default {
    * @param {Object} data - registration data.
    */
   register(data) {
-    return axios.post('http://localhost:8081/api/user', data)
+    return axios.post('http://localhost:8081/api/users', data)
   }
 }
