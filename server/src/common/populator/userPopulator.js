@@ -11,7 +11,14 @@ exports.populateAdmin = () => {
     email: 'admin@scp.com',
     password: bcrypt.hashSync('12345'),
     role: 'ADMIN',
-    isActive: true
+    isActive: true,
+    profile: {
+      firstName: 'Albert',
+      lastName: 'Einstein',
+      age: 50,
+      nationality: 'German',
+      picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/220px-Albert_Einstein_Head.jpg'
+    }
   })
 
   adminUser.save(adminUser)
@@ -30,6 +37,13 @@ exports.populateUser = () => {
     password: bcrypt.hashSync('12345'),
     role: 'USER',
     isActive: true,
+    profile: {
+      firstName: 'Holmes',
+      lastName: 'Sherlock',
+      age: 33,
+      nationality: 'British',
+      picture: 'https://img00.deviantart.net/edf2/i/2012/061/0/6/sherlock_holmes_by_roza777-d4rgdrc.jpg'
+    },
     vehicles: [
       {
         type: 'CAR',
