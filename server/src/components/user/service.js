@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const errorHandler = require('../../common/util/errorUtil')
 const mailer = require('../../common/service/mailer')
 const crypto = require('crypto')
+const restUtil = require('../../common/util/restUtil')
 
 exports.add = (req, res) => {
   let newUser = new UserModel(req.body)
@@ -22,7 +23,7 @@ exports.add = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-  UserModel.find({})
+  restUtil.findAllWithOptions(UserModel, req.query)
     .then(users => {
       // Cleans all users password before sending to client (for security reasons).
       users.forEach(user => (user.password = null))

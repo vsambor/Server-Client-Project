@@ -1,5 +1,6 @@
 const AccidentModel = require('./model')
 const errorHandler = require('../../common/util/errorUtil')
+const restUtil = require('../../common/util/restUtil')
 
 exports.add = (req, res) => {
   let newAccident = new AccidentModel(req.body)
@@ -19,7 +20,7 @@ exports.add = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-  AccidentModel.find({})
+  restUtil.findAllWithOptions(AccidentModel, req.query)
     .then(result => res.status(200).send({
       success: true,
       count: result.length,
