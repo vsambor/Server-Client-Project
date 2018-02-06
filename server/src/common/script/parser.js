@@ -22,8 +22,10 @@ exports.populate = () => {
       count++
       const accident = new AccidentModel({
         position: {
-          lat: data.fields.coord[0],
-          lng: data.fields.coord[1]
+          type: 'Point',
+
+          // Note: the order is Longitude, Latitude (Mongo requirements for geo queries).
+          coordinates: [data.fields.coord[1], data.fields.coord[0]]
         },
         severity: data.fields.grav
       })
