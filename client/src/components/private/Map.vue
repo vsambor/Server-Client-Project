@@ -11,11 +11,16 @@
     </gmap-map>
 
     <h6>{{$t('accident.total', {total: totalAccidents})}}</h6>
+
+    <div class="row justify-center mt-10">
+      <q-btn :color="$store.getters.currentTheme" outline @click="onCreateAccident" :disabled="userPosition.lat === 0">{{$t('accident.add')}}</q-btn>
+    </div>
   </div>
 </template>
 
 <script>
 import AccidentService from 'services/AccidentService'
+import { Dialog, Toast } from 'quasar-framework'
 
 export default {
   data() {
@@ -49,6 +54,53 @@ export default {
           .catch(() => {})
       }
     })
+  },
+  methods: {
+    /**
+     * Handles add new accident button.
+     */
+    onCreateAccident() {
+      const vm = this
+      let severityModel = 1
+      Dialog.create({
+        title: vm.$t('accident.add_title'),
+        message: vm.$t('accident.add_message', {
+          location: `<b>${vm.userPosition.lat}, ${vm.userPosition.lng}</b>`
+        }),
+        form: {
+          step: {
+            type: 'slider',
+            label: `<b>${vm.$t('accident.severity')}</b>`,
+            model: severityModel,
+            min: 1,
+            max: 5,
+            step: 1,
+            snap: true,
+            markers: true,
+            withLabel: true,
+            labelAlways: true
+          }
+        },
+        buttons: [
+          vm.$t('general.cancel'),
+          {
+            label: vm.$t('general.add'),
+            handler(data) {
+              // For the moment it adds an accident at the user current position (After maybe a dragable marker).
+              AccidentService.add({
+                position: {
+                  type: 'Point',
+                  coordinates: [vm.userPosition.lng, vm.userPosition.lat]
+                },
+                severity: severityModel
+              }).then(() => {
+                Toast.create.positive(vm.$t('general.added'))
+              })
+            }
+          }
+        ]
+      })
+    }
   }
 }
 </script>

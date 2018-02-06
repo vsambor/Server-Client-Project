@@ -16,6 +16,8 @@ module.exports = {
     back: 'Back',
     edit: 'Edit',
     save: 'Save',
+    cancel: 'Cancel',
+    add: 'Add',
     login: 'Login',
     logout: 'Logout',
     reset: 'Reset',
@@ -25,7 +27,8 @@ module.exports = {
     change_language: 'Change Language',
     change_password: 'Change Password',
     updated: 'Updated',
-    role: 'Role'
+    role: 'Role',
+    added: 'Added'
   },
   login: {
     title: 'Login',
@@ -50,7 +53,11 @@ module.exports = {
     nationality: 'Nationality'
   },
   accident: {
-    total: 'Total accidents: {total}'
+    add: 'Add accident',
+    total: 'Total accidents: {total}',
+    add_title: 'Add Accident',
+    add_message: 'The accident with location {location} will be created.',
+    severity: 'Severity'
   },
   footer: {
     rights: 'All rights reserved'

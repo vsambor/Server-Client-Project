@@ -14,6 +14,7 @@ module.exports = {
     settings: 'إعدادات',
     notifications: 'إخطارات',
     back: 'الى الخلف',
+    cancel: 'إلغاء',
     login: 'تسجيل الدخول',
     logout: 'الخروج',
     reset: 'مسح',

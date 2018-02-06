@@ -14,6 +14,7 @@ module.exports = {
     settings: 'Paramètres',
     notifications: 'Notifications',
     back: 'Arrière',
+    cancel: 'Anuler',
     login: 'Se connecter',
     logout: 'Déconnecter',
     reset: 'Réinitialiser',
