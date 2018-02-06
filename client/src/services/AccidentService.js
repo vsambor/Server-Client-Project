@@ -4,7 +4,7 @@ import store from '../store'
 export default {
 
   /**
-   * Geta all accidents from the database.
+   * Get all accidents from the database.
    *
    * @return {Promise} - accidents data on success.
    */
@@ -28,11 +28,21 @@ export default {
           },
 
           // Times 1000 because maxDistance is expressed in meters.
-          $maxDistance: store.getters.currentUser.settings.alertProximity * 1000
+          $maxDistance: store.getters.currentUserSettings.alertProximity * 1000
         }
       }
     }
 
     return axios.get('http://localhost:8081/api/accidents?filter=' + JSON.stringify(filter))
+  },
+
+  /**
+   * Add accident to the database.
+   *
+   * @param {Object} data - new accident object.
+   * @return {Promise} - accidents data on success.
+   */
+  add(data) {
+    return axios.post('http://localhost:8081/api/accidents', data)
   }
 }

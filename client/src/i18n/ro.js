@@ -14,6 +14,7 @@ module.exports = {
     settings: 'Setări',
     notifications: 'Notificări',
     back: 'Înapoi',
+    cancel: 'Anulare',
     login: 'Conectare',
     logout: 'Deconectare',
     reset: 'Resetează',
