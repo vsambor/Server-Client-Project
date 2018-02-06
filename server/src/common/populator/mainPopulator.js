@@ -22,5 +22,6 @@ exports.populate = () => {
 
   if (argUtil.has('GENERATE_RDF')) {
     // TODO call the script which generates the RDF file.
+
   }
 }

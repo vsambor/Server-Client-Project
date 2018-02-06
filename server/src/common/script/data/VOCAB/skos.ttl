@@ -1,0 +1,106 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+<#agglomeration1> a skos:Concept ;
+    skos:prefLabel "Hors_agglomeration"@fr .
+
+<#agglomeration2> a skos:Concept ;
+    skos:prefLabel "Agglomeration_de_moins_de_2_000_habitants"@fr .
+
+<#agglomeration3> a skos:Concept ;
+    skos:prefLabel "Agglomeration_entre_2_000_habitants_et_5_000_habitants"@fr .
+
+<#agglomeration4> a skos:Concept ;
+    skos:prefLabel "Agglomeration_entre_5_000_habitants_et_10_000_habitants"@fr .
+
+<#agglomeration5> a skos:Concept ;
+    skos:prefLabel "Agglomeration_entre_10_000_habitants_et_20_000_habitants"@fr .
+
+<#agglomeration6> a skos:Concept ;
+    skos:prefLabel "Agglomeration_entre_20_000_habitants_et_50_000_habitants"@fr .
+
+<#agglomeration7> a skos:Concept ;
+    skos:prefLabel "Agglomeration_entre_50_000_habitants_et_100_000_habitants"@fr .
+
+<#agglomeration8> a skos:Concept ;
+    skos:prefLabel "Agglomeration_entre_100_000_habitants_et_300_000_habitants"@fr .
+
+<#agglomeration9> a skos:Concept ;
+    skos:prefLabel "Agglomeration_de_plus_de_300_000_habitants"@fr .
+
+<#collision1> a skos:Concept ;
+    skos:prefLabel "Deux_vehicules__frontale"@fr .
+
+<#collision2> a skos:Concept ;
+    skos:prefLabel "Deux_vehicules__par_l’arriere"@fr .
+
+<#collision3> a skos:Concept ;
+    skos:prefLabel "Deux_vehicules__par_le_cote"@fr .
+
+<#collision4> a skos:Concept ;
+    skos:prefLabel "Trois_vehicules_et_plus__en_chaîne"@fr .
+
+<#collision5> a skos:Concept ;
+    skos:prefLabel "Trois_vehicules_et_plus__collisions_multiples"@fr .
+
+<#collision6> a skos:Concept ;
+    skos:prefLabel "Autre_collision"@fr .
+
+<#collision7> a skos:Concept ;
+    skos:prefLabel "Sans_collision"@fr .
+
+<#organisme1> a skos:Concept ;
+    skos:prefLabel "Gendarmerie"@fr .
+
+<#organisme2> a skos:Concept ;
+    skos:prefLabel "Prefecture_de_Police_de_Paris"@fr .
+
+<#organisme3> a skos:Concept ;
+    skos:prefLabel "C_R_S_"@fr .
+
+<#organisme4> a skos:Concept ;
+    skos:prefLabel "P_A_F_"@fr .
+
+<#organisme5> a skos:Concept ;
+    skos:prefLabel "Securite_publique"@fr .
+
+<#profil1> a skos:Concept ;
+    skos:prefLabel "Plat"@fr .
+
+<#profil2> a skos:Concept ;
+    skos:prefLabel "Pente"@fr .
+
+<#profil3> a skos:Concept ;
+    skos:prefLabel "Sommet_de_cote_4_Bas_de_cote"@fr .
+
+<#regimeCirculation1> a skos:Concept ;
+    skos:prefLabel "A_sens_unique"@fr .
+
+<#regimeCirculation2> a skos:Concept ;
+    skos:prefLabel "Bidirectionnelle"@fr .
+
+<#regimeCirculation3> a skos:Concept ;
+    skos:prefLabel "A_chaussees_separees"@fr .
+
+<#regimeCirculation4> a skos:Concept ;
+    skos:prefLabel "Avec_voies_d’affectation_variable"@fr .
+
+<#situation1> a skos:Concept ;
+    skos:prefLabel "Sur_chaussee"@fr .
+
+<#situation2> a skos:Concept ;
+    skos:prefLabel "Sur_bande_d’arret_d’urgence"@fr .
+
+<#situation3> a skos:Concept ;
+    skos:prefLabel "Sur_accotement"@fr .
+
+<#situation4> a skos:Concept ;
+    skos:prefLabel "Sur_trottoir"@fr .
+
+<#situation5> a skos:Concept ;
+    skos:prefLabel "Sur_piste_cyclable"@fr .
+
