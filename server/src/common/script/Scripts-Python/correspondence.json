@@ -1,0 +1,59 @@
+{
+  "org": [
+    "",
+    "Gendarmerie",
+    "Prefecture_de_Police_de_Paris",
+    "C_R_S_",
+    "P_A_F_",
+    "Securite_publique"
+  ],
+  
+  "agg": [
+    "",
+    "Hors_agglomeration",
+    "Agglomeration_de_moins_de_2_000_habitants",
+    "Agglomeration_entre_2_000_habitants_et_5_000_habitants",
+    "Agglomeration_entre_5_000_habitants_et_10_000_habitants",
+    "Agglomeration_entre_10_000_habitants_et_20_000_habitants",
+    "Agglomeration_entre_20_000_habitants_et_50_000_habitants",
+    "Agglomeration_entre_50_000_habitants_et_100_000_habitants",
+    "Agglomeration_entre_100_000_habitants_et_300_000_habitants",
+    "Agglomeration_de_plus_de_300_000_habitants"
+  ],
+  
+  
+  "col": [
+    "",
+    "Deux_vehicules__frontale",
+    "Deux_vehicules__par_l’arriere",
+    "Deux_vehicules__par_le_cote",
+    "Trois_vehicules_et_plus__en_chaîne",
+    "Trois_vehicules_et_plus__collisions_multiples",
+    "Autre_collision",
+    "Sans_collision"
+  ],
+
+  "circ": [
+    "",
+    "A_sens_unique",
+    "Bidirectionnelle",
+    "A_chaussees_separees",
+    "Avec_voies_d’affectation_variable"
+  ],
+ 
+  "prof": [
+    "",
+    "Plat",
+    "Pente",
+    "Sommet_de_cote_4_Bas_de_cote"
+  ],
+  
+  "situ": [
+    "",
+    "Sur_chaussee",
+    "Sur_bande_d’arret_d’urgence",
+    "Sur_accotement",
+    "Sur_trottoir",
+    "Sur_piste_cyclable"
+  ]
+}

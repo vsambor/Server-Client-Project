@@ -1,0 +1,103 @@
+@prefix ns1: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.webofdata.fr/instances> . 
+
+
+[ rdf:type owl:Ontology
+ ] .
+
+ ns1:hasIndiceDeGravite rdf:type owl:DatatypeProperty .
+
+<#mineur> rdf:type owl:Class ;
+     owl:equivalentClass [ owl:intersectionOf ( ns1:accident
+	        [  rdf:type owl:Restriction ;
+	            owl:onProperty ns1:hasIndiceDeGravite ;
+	            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+	            owl:onDatatype xsd:double ;
+	            owl:withRestrictions ( [ xsd:minInclusive "0.4"^^xsd:double
+	        ]
+	        [ xsd:maxInclusive "10.0"^^xsd:double ]
+    	)
+	]
+]
+) ;
+rdf:type owl:Class
+] .
+
+
+<#moderee> rdf:type owl:Class ;
+     owl:equivalentClass [ owl:intersectionOf ( ns1:accident
+	        [  rdf:type owl:Restriction ;
+	            owl:onProperty ns1:hasIndiceDeGravite ;
+	            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+	            owl:onDatatype xsd:double ;
+	            owl:withRestrictions ( [ xsd:minInclusive "10"^^xsd:double
+	        ]
+	        [ xsd:maxInclusive "23"^^xsd:double ]
+    	)
+	]
+]
+) ;
+rdf:type owl:Class
+] .
+
+
+<#serieuse> rdf:type owl:Class ;
+     owl:equivalentClass [ owl:intersectionOf ( ns1:accident
+	        [  rdf:type owl:Restriction ;
+	            owl:onProperty ns1:hasIndiceDeGravite ;
+	            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+	            owl:onDatatype xsd:double ;
+	            owl:withRestrictions ( [ xsd:minInclusive "23"^^xsd:double
+	        ]
+	        [ xsd:maxInclusive "99"^^xsd:double ]
+    	)
+	]
+]
+) ;
+rdf:type owl:Class
+] .
+
+
+<#grave> rdf:type owl:Class ;
+     owl:equivalentClass [ owl:intersectionOf ( ns1:accident
+	        [  rdf:type owl:Restriction ;
+	            owl:onProperty ns1:hasIndiceDeGravite ;
+	            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+	            owl:onDatatype xsd:double ;
+	            owl:withRestrictions ( [ xsd:minInclusive "100"^^xsd:double
+	        ]
+	        [ xsd:maxInclusive "199"^^xsd:double ]
+    	)
+	]
+]
+) ;
+rdf:type owl:Class
+] .
+
+
+<#extremementGrave> rdf:type owl:Class ;
+     owl:equivalentClass [ owl:intersectionOf ( ns1:accident
+	        [  rdf:type owl:Restriction ;
+	            owl:onProperty ns1:hasIndiceDeGravite ;
+	            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+	            owl:onDatatype xsd:double ;
+	            owl:withRestrictions ( [ xsd:minInclusive "200"^^xsd:double
+	        ]
+	        
+    	)
+	]
+]
+) ;
+rdf:type owl:Class
+] .
+
+
+
+
+ns1:accident rdf:type owl:Class .
+
