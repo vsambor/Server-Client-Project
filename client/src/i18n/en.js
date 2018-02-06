@@ -41,6 +41,9 @@ module.exports = {
     password: 'Password',
     confirm_password: 'Confirm Password'
   },
+  accident: {
+    total: 'Total accidents: {total}'
+  },
   footer: {
     rights: 'All rights reserved'
   },

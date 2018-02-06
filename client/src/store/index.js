@@ -10,6 +10,7 @@ export default new Vuex.Store({
     shortAppName: 'SCP',
     appName: 'Server Client Project',
     authToken: null,
+    isAdmin: false,
     isLogged: false,
     currentUser: null,
     currentTheme: 'secondary'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     },
     setCurrentUser(state, value) {
       state.currentUser = value
+      state.isAdmin = value.role === 'ADMIN'
       state.isLogged = true
       state.currentTheme = value.settings.appTheme
     },
@@ -31,6 +33,7 @@ export default new Vuex.Store({
     },
     logout(state) {
       state.authToken = null
+      state.isAdmin = false
       state.isLogged = false
       state.currentUser = null
       state.currentTheme = 'secondary'
@@ -38,6 +41,7 @@ export default new Vuex.Store({
   },
   getters: {
     authToken: state => state.authToken,
+    isAdmin: state => state.isAdmin,
     isLogged: state => state.isLogged,
     currentUser: state => state.currentUser,
     currentUserSettings: state => state.currentUser.settings,
