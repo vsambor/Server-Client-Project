@@ -23,6 +23,9 @@ export default new Vuex.Store({
       state.isLogged = true
       state.currentTheme = value.settings.appTheme
     },
+    setCurrentUserSettings(state, value) {
+      state.currentUser.settings = value
+    },
     setCurrentTheme(state, value) {
       state.currentTheme = value
     },
@@ -37,6 +40,7 @@ export default new Vuex.Store({
     authToken: state => state.authToken,
     isLogged: state => state.isLogged,
     currentUser: state => state.currentUser,
+    currentUserSettings: state => state.currentUser.settings,
     currentTheme: state => state.currentTheme
   }
   // To do things async

@@ -1,6 +1,15 @@
+/**
+ * Holds all utils methods which are used around the application.
+ */
 export default {
+  /**
+   * Holds execution of a function until a timeout is expired.
+   *
+   * @param {Function} func - the function to be run.
+   * @param {Number} wait - the waiting expiration in miliseconds.
+   * @param {Boolean} immediate - if true then runs the function directly.
+   */
   debounce(func, wait, immediate) {
-    console.log('deb')
     var timeout
     return function() {
       var context = this

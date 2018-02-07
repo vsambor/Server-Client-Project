@@ -20,12 +20,16 @@ module.exports = {
     register: 'Register',
     forgot_password: 'Forgot Password',
     language_changed: 'Language changed to: ',
-    change_language: 'Change Language'
+    change_language: 'Change Language',
+    updated: 'Updated'
   },
   login: {
     title: 'Login',
     login_ok: 'Successfully logged in!',
     login_failed: 'Login failed: '
+  },
+  logout: {
+    success: 'Successfully logged out!'
   },
   registration: {
     title: 'Register',

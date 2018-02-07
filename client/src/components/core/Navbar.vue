@@ -55,7 +55,7 @@ export default {
   methods: {
     onLogout() {
       this.$store.commit('logout')
-      Toast.create.positive('Successfully logged out!')
+      Toast.create.positive(this.$t('logout.success'))
       this.$router.push({ name: 'home' })
     }
   }

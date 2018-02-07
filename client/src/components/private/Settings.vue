@@ -42,6 +42,7 @@
 <script>
 import UserService from 'services/UserService'
 import { Toast } from 'quasar-framework'
+import Util from 'services/Util'
 
 export default {
   data() {
@@ -80,17 +81,25 @@ export default {
      * @param {Object} newValue - new setting value.
      * @param {String} field - setting object property.
      */
-    onSettingsChanged(newValue, field) {
+    onSettingsChanged: Util.debounce(function(newValue, field) {
       if (field === 'appTheme') {
         this.$store.commit('setCurrentTheme', newValue)
       }
+
+      // Updates the component model.
       this.settings[field] = newValue
+
+      // Updates the store user settings, (If user navigates witout reloging, to be ble to see things according to new settings)
+      this.$store.commit('setCurrentUserSettings', this.settings)
+
+      // Updates user settings in the database.
       UserService.setSettings(
         this.$store.getters.currentUser._id,
         this.settings
       )
-      Toast.create.positive('saved')
-    }
+
+      Toast.create.positive(this.$t('general.updated'))
+    }, 500)
   }
 }
 </script>
