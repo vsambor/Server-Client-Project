@@ -12,4 +12,8 @@ module.exports = (app) => {
   // User's vehicle routes.
   app.post('/api/users/:id/vehicles', service.addVehicle)
   app.delete('/api/users/:id/vehicles/:vehicleId', service.deleteVehicle)
+
+  // User's settings routes.
+  app.get('/api/users/:id/settings', service.findSettings)
+  app.put('/api/users/:id/settings', service.updateSettings)
 }

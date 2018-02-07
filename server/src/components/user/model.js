@@ -58,8 +58,17 @@ const schema = mongoose.Schema({
   settings: {
     showNotification: { type: Boolean, default: true },
 
+    // Web app theme.
+    appTheme: { type: String, default: 'secondary' },
+
+    // Disabled/enabled geolocation
+    geo: { type: Boolean, default: true },
+
     // Distance in km.
-    alertProximity: { type: Number, default: 10 }
+    alertProximity: { type: Number, default: 10 },
+
+    // Map zoom in km.
+    mapZoom: { type: Number, default: 15 }
   },
   token: { type: String },
   isActive: { type: Boolean, default: false }

@@ -9,5 +9,24 @@ export default {
    */
   register(data) {
     return axios.post('http://localhost:8081/api/users', data)
+  },
+
+  /**
+   * Get the user settings.
+   *
+   * @param {Number} id - user id.
+   */
+  getSettings(id) {
+    return axios.get(`http://localhost:8081/api/users/${id}/settings`)
+  },
+
+  /**
+   * upload the user settings.
+   *
+   * @param {Number} id - user id.
+   * @param {Object} data - settings data.
+   */
+  setSettings(id, data) {
+    return axios.put(`http://localhost:8081/api/users/${id}/settings`, data)
   }
 }

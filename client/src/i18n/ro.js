@@ -39,5 +39,13 @@ module.exports = {
   },
   footer: {
     rights: 'Toate drepturile rezervate'
+  },
+  settings: {
+    title: 'Setari generale',
+    geolocation: 'Locatia mea',
+    theme: 'Tema aplicației',
+    notification: 'Aplicație notificare',
+    proximity: 'Distanta de avertizare a distantei',
+    zoom: 'Zoom implicit pe hartă'
   }
 }

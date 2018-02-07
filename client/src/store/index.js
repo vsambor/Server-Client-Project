@@ -21,6 +21,7 @@ export default new Vuex.Store({
     setCurrentUser(state, value) {
       state.currentUser = value
       state.isLogged = true
+      state.currentTheme = value.settings.appTheme
     },
     setCurrentTheme(state, value) {
       state.currentTheme = value
@@ -29,6 +30,7 @@ export default new Vuex.Store({
       state.authToken = null
       state.isLogged = false
       state.currentUser = null
+      state.currentTheme = 'secondary'
     }
   },
   getters: {

@@ -94,3 +94,19 @@ exports.deleteVehicle = (req, res) => {
     }))
     .catch(err => errorHandler.handle(err, res))
 }
+
+exports.findSettings = (req, res) => {
+  UserModel.findById(req.params.id)
+    .then(user => res.status(200).send({ success: true, settings: user.settings }))
+    .catch((err) => errorHandler.handle(err, res))
+}
+
+exports.updateSettings = (req, res) => {
+  UserModel.findByIdAndUpdate(req.params.id, { $set: { settings: req.body } }, { safe: true, upsert: true, new: true })
+    .then((result) => res.status(201).json({
+      success: true,
+      message: res.__('success.add'),
+      user: result
+    }))
+    .catch(err => errorHandler.handle(err, res))
+}

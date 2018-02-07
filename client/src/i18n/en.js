@@ -39,5 +39,13 @@ module.exports = {
   },
   footer: {
     rights: 'All rights reserved'
+  },
+  settings: {
+    title: 'General settings',
+    geolocation: 'My location',
+    theme: 'Application theme',
+    notification: 'Application notification',
+    proximity: 'Accident warning distance',
+    zoom: 'Default map zoom'
   }
 }
