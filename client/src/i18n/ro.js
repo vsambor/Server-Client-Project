@@ -41,11 +41,11 @@ module.exports = {
     rights: 'Toate drepturile rezervate'
   },
   settings: {
-    title_settings: 'General settings',
-    title_geolocation: 'Geolocation',
-    title_theme: 'Application theme',
-    title_notification: 'Notification',
-    title_proximity: 'Proximity',
-    title_zoom: 'Zoom'
+    title: 'Setari generale',
+    geolocation: 'Locatia mea',
+    theme: 'Tema aplicației',
+    notification: 'Aplicație notificare',
+    proximity: 'Distanta de avertizare a distantei',
+    zoom: 'Zoom implicit pe hartă'
   }
 }
