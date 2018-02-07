@@ -41,11 +41,11 @@ module.exports = {
     rights: 'All rights reserved'
   },
   settings: {
-    title_settings: 'General settings',
-    title_geolocation: 'Geolocation',
-    title_theme: 'Application theme',
-    title_notification: 'Notification',
-    title_proximity: 'Proximity',
-    title_zoom: 'Zoom'
+    title: 'General settings',
+    geolocation: 'My location',
+    theme: 'Application theme',
+    notification: 'Application notification',
+    proximity: 'Accident warning distance',
+    zoom: 'Default map zoom'
   }
 }
