@@ -14,6 +14,8 @@ module.exports = {
     settings: 'Settings',
     notifications: 'Notifications',
     back: 'Back',
+    edit: 'Edit',
+    save: 'Save',
     login: 'Login',
     logout: 'Logout',
     reset: 'Reset',
@@ -21,7 +23,9 @@ module.exports = {
     forgot_password: 'Forgot Password',
     language_changed: 'Language changed to: ',
     change_language: 'Change Language',
-    updated: 'Updated'
+    change_password: 'Change Password',
+    updated: 'Updated',
+    role: 'Role'
   },
   login: {
     title: 'Login',
@@ -39,7 +43,11 @@ module.exports = {
   attributes: {
     email: 'E-mail',
     password: 'Password',
-    confirm_password: 'Confirm Password'
+    confirm_password: 'Confirm Password',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    age: 'Age',
+    nationality: 'Nationality'
   },
   accident: {
     total: 'Total accidents: {total}'
@@ -54,5 +62,9 @@ module.exports = {
     notification: 'Application notification',
     proximity: 'Accident warning distance',
     zoom: 'Default map zoom'
+  },
+  profile: {
+    edit_title: 'Edit Profile',
+    vehicles_number: 'Number of vehicles'
   }
 }
