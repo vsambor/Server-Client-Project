@@ -28,7 +28,8 @@ module.exports = {
     change_password: 'Change Password',
     updated: 'Updated',
     role: 'Role',
-    added: 'Added'
+    added: 'Added',
+    users: 'Users'
   },
   login: {
     title: 'Login',
