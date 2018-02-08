@@ -1,6 +1,21 @@
 <template>
   <div>
-    <gmap-map :center="userPosition" :zoom="16" map-type-id="terrain" style="width: 100%; height: 500px">
+    <div id="floating-panel" v-show="showAB">
+      <div class="row p-10">
+        <!-- Inputs A and B -->
+        <gmap-autocomplete id="pointA" @place_changed="onPlaceAChanged" :placeholder="$t('map.start')" class="mr-20"></gmap-autocomplete>
+        <gmap-autocomplete id="pointB" @place_changed="onPlaceBChanged" :placeholder="$t('map.end')" class="mr-20"></gmap-autocomplete>
+
+        <!-- Avoid Accidents -->
+        <q-checkbox v-model="avoidAccidents" :label="$t('map.avoid_accidents')" />
+
+        <!-- Start and Clear Directions -->
+        <q-btn icon="navigation" class="ml-20" :color="$store.getters.currentTheme" @click="onDirectionGo">{{$t('general.start')}}</q-btn>
+        <q-btn outline class="ml-20" color="negative" @click="onClearDirection">{{$t('general.clear')}}</q-btn>
+      </div>
+    </div>
+
+    <gmap-map ref="map" :center="userPosition" :zoom="16" map-type-id="terrain" style="width: 100%; height: 500px">
 
       <!-- All accident markers -->
       <gmap-marker :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
@@ -20,17 +35,25 @@
 
 <script>
 import AccidentService from 'services/AccidentService'
-import { Dialog, Toast } from 'quasar-framework'
+import { Dialog, Toast, Alert } from 'quasar-framework'
+import 'quasar-extras/animate/bounceInRight.css'
+import 'quasar-extras/animate/bounceOutRight.css'
 
 export default {
   data() {
     return {
       accidents: '',
+      showAB: false,
+      avoidAccidents: false,
       totalAccidents: 0,
-      userPosition: { lat: 0, lng: 0 }
+      userPosition: { lat: 0, lng: 0 },
+      pointA: {},
+      pointB: {},
+      directionsService: null,
+      directionsDisplay: null
     }
   },
-  created() {
+  mounted() {
     // Returns browser current location. (user should allow).
     navigator.geolocation.getCurrentPosition(position => {
       this.userPosition.lat = position.coords.latitude
@@ -53,6 +76,11 @@ export default {
           })
           .catch(() => {})
       }
+      /* eslint-disable no-undef */
+      this.directionsService = new google.maps.DirectionsService()
+      this.directionsDisplay = new google.maps.DirectionsRenderer({ map: this.$refs.map.$mapObject })
+
+      this.showAB = true
     })
   },
   methods: {
@@ -100,11 +128,82 @@ export default {
           }
         ]
       })
+    },
+
+    /**
+     * Handles the first autocomplete input selection.
+     * Saves the latitude and longitude into pointA.
+     */
+    onPlaceAChanged(place) {
+      this.pointA.lat = place.geometry.location.lat()
+      this.pointA.lng = place.geometry.location.lng()
+    },
+
+    /**
+     * Handles the second autocomplete input selection.
+     * Saves the latitude and longitude into pointB.
+     */
+    onPlaceBChanged(place) {
+      this.pointB.lat = place.geometry.location.lat()
+      this.pointB.lng = place.geometry.location.lng()
+    },
+
+    /**
+     * Handles the start navigation button.
+     * It displays on the map the directions between 2 points, by using google services.
+     */
+    onDirectionGo() {
+      this.directionsService.route(
+        {
+          origin: this.pointA,
+          destination: this.pointB,
+          avoidTolls: true,
+          avoidHighways: false,
+          travelMode: google.maps.TravelMode.DRIVING
+        },
+        (response, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            this.directionsDisplay.setDirections(response)
+          } else {
+            Alert.create({
+              enter: 'bounceInRight',
+              leave: 'bounceOutRight',
+              color: 'negative',
+              icon: 'error',
+              html: this.$t('map.directions_failed') + status,
+              position: 'top-center'
+            })
+          }
+        }
+      )
+    },
+
+    /**
+     * Handles the map clean up from directoins.
+     */
+    onClearDirection() {
+      this.$el.querySelector('#pointA').value = ''
+      this.$el.querySelector('#pointB').value = ''
+      this.pointA = {}
+      this.pointB = {}
+      this.directionsDisplay.set('directions', null)
     }
   }
 }
 </script>
 
 <style scoped>
-
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto', 'sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
 </style>
