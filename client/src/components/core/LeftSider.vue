@@ -15,6 +15,11 @@
       <q-item-main :label="$t('general.settings')" sublabel="User settings" />
     </q-side-link>
 
+    <q-side-link item to="/users">
+      <q-item-side icon="view list" />
+      <q-item-main :label="$t('general.users')" sublabel="Users management" />
+    </q-side-link>
+
     <q-side-link item to="/about">
       <q-item-side icon="info" />
       <q-item-main :label="$t('general.about')" sublabel="About app" />

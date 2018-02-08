@@ -28,5 +28,13 @@ export default {
    */
   setSettings(id, data) {
     return axios.put(`http://localhost:8081/api/users/${id}/settings`, data)
+  },
+
+  /**
+   * Gets all user.
+   *
+   */
+  getUsers() {
+    return axios.get(`http://localhost:8081/api/users`)
   }
 }

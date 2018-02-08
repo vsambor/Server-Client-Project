@@ -11,6 +11,7 @@ import Settings from 'private/Settings'
 import Dashboard from 'private/Dashboard'
 import Map from 'private/Map'
 import PageNotFound from 'public/PageNotFound'
+import Users from 'private/Users'
 
 Vue.use(Router)
 
@@ -26,6 +27,7 @@ let router = new Router({
     { path: '/settings', name: 'settings', component: Settings, meta: { title: 'SCP | Settings' }, beforeEnter: requireAuth },
     { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'SCP | Dashboard' }, beforeEnter: requireAuth },
     { path: '/map', name: 'map', component: Map, meta: { title: 'SCP | Map' }, beforeEnter: requireAuth },
+    { path: '/users', name: 'users', component: Users, meta: { title: 'SCP | users' }, beforeEnter: requireAuth },
     { path: '*', component: PageNotFound }
   ]
 })
