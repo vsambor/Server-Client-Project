@@ -29,7 +29,10 @@ module.exports = {
     updated: 'Updated',
     role: 'Role',
     added: 'Added',
-    users: 'Users'
+    users: 'Users',
+    start: 'Start',
+    end: 'End',
+    clear: 'Clear'
   },
   login: {
     title: 'Login',
@@ -70,6 +73,12 @@ module.exports = {
     notification: 'Application notification',
     proximity: 'Accident warning distance',
     zoom: 'Default map zoom'
+  },
+  map: {
+    start: 'Point A',
+    end: 'Point B',
+    avoid_accidents: 'Avoid Accidents',
+    directions_failed: 'Directions service failed: '
   },
   profile: {
     edit_title: 'Edit Profile',
