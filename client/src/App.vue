@@ -22,13 +22,15 @@
 import Navbar from './components/core/Navbar'
 import Leftsider from './components/core/LeftSider'
 import Footerbar from './components/core/Footer'
+import Notification from './components/core/Notifications'
 
 export default {
   name: 'app',
   components: {
     Footerbar,
     Navbar,
-    Leftsider
+    Leftsider,
+    Notification
   }
 }
 </script>

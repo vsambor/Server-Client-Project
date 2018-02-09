@@ -37,6 +37,7 @@ server-client-project is a class project.
 - [morgan]()
 - [helmet]()
 - [serve-favicon](https://github.com/expressjs/serve-favicon)
+- [socket.io](https://socket.io/)
 
 ## Frontend
 
@@ -50,6 +51,7 @@ server-client-project is a class project.
 - [karma](https://karma-runner.github.io/2.0/index.html)
 - [mocha](https://mochajs.org/)
 - [nightwatch](http://nightwatchjs.org/)
+- [vue-socket.io](https://github.com/MetinSeylan/Vue-Socket.io)
 
 ## Database
 
