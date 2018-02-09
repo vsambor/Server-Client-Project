@@ -19,6 +19,11 @@ import ro from 'vee-validate/dist/locale/ro'
 import ar from 'vee-validate/dist/locale/ar'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
+import VueSocketio from 'vue-socket.io'
+import socketio from 'socket.io-client'
+
+Vue.use(VueSocketio, socketio('http://localhost:8083'))
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyBa2imAC4TU9EHdK4YAV8PDy5Lzy7a7Lek',
