@@ -21,11 +21,13 @@
       </q-btn>
 
       <!-- Logout button -->
-
       <q-btn v-if="$store.getters.isLogged" @click="onLogout" flat>
         <q-icon name="exit to app" />
         <q-tooltip>{{$t('general.logout')}}</q-tooltip>
       </q-btn>
+
+      <!-- Notifications button -->
+      <notifications />
 
       <!-- Language switcher component -->
       <lang-switch />
@@ -41,12 +43,14 @@
 </template>
 
 <script>
-import LangSwitch from 'common/LangSwitch'
+import LangSwitch from './LangSwitch'
+import Notifications from './Notifications'
 import { Toast } from 'quasar-framework'
 
 export default {
   components: {
-    'lang-switch': LangSwitch
+    'lang-switch': LangSwitch,
+    notifications: Notifications
   },
   created() {
     // Hides the left sider at the beginning.
