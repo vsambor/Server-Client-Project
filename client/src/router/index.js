@@ -27,7 +27,7 @@ let router = new Router({
     { path: '/settings', name: 'settings', component: Settings, meta: { title: 'SCP | Settings' }, beforeEnter: requireAuth },
     { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'SCP | Dashboard' }, beforeEnter: requireAuth },
     { path: '/map', name: 'map', component: Map, meta: { title: 'SCP | Map' }, beforeEnter: requireAuth },
-    { path: '/users', name: 'users', component: Users, meta: { title: 'SCP | users' }, beforeEnter: requireAuth },
+    { path: '/users', name: 'users', component: Users, meta: { title: 'SCP | users' }, beforeEnter: requireAuthAdmin },
     { path: '*', component: PageNotFound }
   ]
 })
@@ -52,6 +52,22 @@ function requireAuth(to, from, next) {
   } else {
     // Redirects to login.
     next({ path: '/login' })
+  }
+}
+
+/**
+ * Checks if user is ADMIN.
+ *
+ * @param {Object} to - the target Route Object being navigated to.
+ * @param {Object} from - the current route being navigated away from.
+ * @param {Function} next - this function must be called to resolve the hook. The action depends on the arguments provided
+ */
+function requireAuthAdmin(to, from, next) {
+  if (store.getters.isAdmin) {
+    next()
+  } else {
+    // Redirects to a non existing page if is not admin.
+    next({ path: '404' })
   }
 }
 

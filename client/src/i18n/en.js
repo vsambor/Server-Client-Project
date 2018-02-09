@@ -74,5 +74,12 @@ module.exports = {
   profile: {
     edit_title: 'Edit Profile',
     vehicles_number: 'Number of vehicles'
+  },
+  side_menu: {
+    about_app: 'About app',
+    user_profile: 'User Profile',
+    user_settings: 'User Settings',
+    users_management: 'Users Management',
+    notifications_check: 'Check all notifications'
   }
 }
