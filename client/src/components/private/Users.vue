@@ -1,38 +1,29 @@
 <template>
   <q-data-table :data="users" :config="config" :columns="columns">
-    <!-- Email -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.email}}</span>
-    </template>
 
     <!-- Last name -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.profile.lastName}}</span>
+    <template slot="col-lastName" slot-scope="cell">
+      <span class="light-paragraph">{{cell.row.profile.lastName}}</span>
     </template>
 
     <!-- First name -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.profile.firstName}}</span>
+    <template slot="col-firstName" slot-scope="cell">
+      <span class="light-paragraph">{{cell.row.profile.firstName}}</span>
     </template>
 
     <!-- Age -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.profile.age}}</span>
+    <template slot="col-age" slot-scope="cell">
+      <span class="light-paragraph">{{cell.row.profile.age}}</span>
     </template>
 
     <!-- Nationality -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.profile.nationality}}</span>
-    </template>
-
-    <!-- Role -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.role}}</span>
+    <template slot="col-nationality" slot-scope="cell">
+      <span class="light-paragraph">{{cell.row.profile.nationality}}</span>
     </template>
 
     <!-- Vehicles -->
-    <template slot="col-message" scope="users">
-      <span class="light-paragraph">{{users.vehicles.lenght}}</span>
+    <template slot="col-vehicles" slot-scope="cell">
+      <span class="light-paragraph">{{cell.data.length}}</span>
     </template>
   </q-data-table>
 </template>
@@ -43,52 +34,24 @@ import UserService from 'services/UserService'
 export default {
   data() {
     return {
-      users: {},
+      users: [],
       config: {
         rowHeight: '50px',
-        title: 'Users Management'
+        title: this.$t('side_menu.users_management')
       },
       columns: [
-        {
-          label: 'Email',
-          field: 'email'
-        },
-        {
-          label: 'Last name',
-          field: 'lastName'
-        },
-        {
-          label: 'First name',
-          field: 'firstName'
-        },
-        {
-          label: 'Age',
-          field: 'age'
-        },
-        {
-          label: 'Nationality',
-          field: 'nationality'
-        },
-        {
-          label: 'Role',
-          field: 'role'
-        },
-        {
-          label: 'Number of vehicles',
-          field: 'vehicles'
-        }
+        { label: 'Email', field: 'email' },
+        { label: 'Last name', field: 'lastName' },
+        { label: 'First name', field: 'firstName' },
+        { label: 'Age', field: 'age' },
+        { label: 'Nationality', field: 'nationality' },
+        { label: 'Role', field: 'role' },
+        { label: 'Number of vehicles', field: 'vehicles' }
       ]
     }
   },
   created() {
-    UserService.getUsers().then(response => {
-      console.log(response.data.users)
-      this.users = response.data.users
-    })
+    UserService.getAllUsers().then(response => (this.users = response.data.users))
   }
 }
 </script>
-
-<style scoped>
-
-</style>

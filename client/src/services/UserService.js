@@ -31,10 +31,9 @@ export default {
   },
 
   /**
-   * Gets all user.
-   *
+   * Gets all users.
    */
-  getUsers() {
+  getAllUsers() {
     return axios.get(`http://localhost:8081/api/users`)
   }
 }
