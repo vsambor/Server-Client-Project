@@ -16,7 +16,7 @@
     </q-side-link>
 
     <q-side-link v-if="$store.getters.isLogged && $store.getters.isAdmin" item to="/users">
-      <q-item-side icon="view list" />
+      <q-item-side icon="fa-users" />
       <q-item-main :label="$t('general.users')" :sublabel="$t('side_menu.users_management')" />
     </q-side-link>
 
