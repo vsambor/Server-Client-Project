@@ -1,6 +1,7 @@
 const AccidentModel = require('./model')
 const errorHandler = require('../../common/util/errorUtil')
 const restUtil = require('../../common/util/restUtil')
+const socketSender = require('../../common/service/socket/sender')
 
 exports.add = (req, res) => {
   let newAccident = new AccidentModel(req.body)
@@ -9,6 +10,9 @@ exports.add = (req, res) => {
   newAccident.comments.forEach(comment => {
     comment.createdAt = comment.updatedAt = Date.now()
   })
+
+  // TRY TO SEND A NOTIFICATION HERE!   TO BE REMOVED
+  socketSender.sendNotification(req.app.get('socketio'), { id: 1, title: 'Accident', message: 'added success', date: Date.now() })
 
   newAccident.save(newAccident)
     .then(() => res.status(201).json({

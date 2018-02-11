@@ -5,6 +5,8 @@ const mailer = require('../../common/service/mailer')
 const crypto = require('crypto')
 const restUtil = require('../../common/util/restUtil')
 
+const socketSender = require('../../common/service/socket/sender')
+
 exports.add = (req, res) => {
   let newUser = new UserModel(req.body)
   newUser.token = crypto.createHash('sha1').update(Date.now().toString() + Math.random().toString()).digest('hex')
@@ -27,6 +29,10 @@ exports.findAll = (req, res) => {
     .then(users => {
       // Cleans all users password before sending to client (for security reasons).
       users.forEach(user => (user.password = null))
+
+      // TRY TO SEND A NOTIFICATION HERE!   TO BE REMOVED
+      // MESSAGES SHOULD BE LOCALIZED IN LANG.
+      socketSender.sendNotification(req.app.get('socketio'), { id: 1, title: 'Users', message: 'Users loaded', date: Date.now() })
 
       res.status(200).send({
         success: true,

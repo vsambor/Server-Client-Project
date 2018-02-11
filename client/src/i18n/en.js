@@ -90,5 +90,8 @@ module.exports = {
     user_settings: 'User Settings',
     users_management: 'Users Management',
     notifications_check: 'Check all notifications'
+  },
+  notification: {
+    empty: 'No notifications available.'
   }
 }
