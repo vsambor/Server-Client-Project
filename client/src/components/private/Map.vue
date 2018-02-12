@@ -15,8 +15,7 @@
       </div>
     </div>
 
-    <gmap-map ref="map" :center="userPosition" :zoom="16" map-type-id="terrain" style="width: 100%; height: 500px">
-
+    <gmap-map ref="map" :center="userPosition" :zoom="$store.getters.currentUserSettings.mapZoom" map-type-id="terrain" style="width: 100%; height: 500px">
       <!-- All accident markers -->
       <gmap-marker :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
 
