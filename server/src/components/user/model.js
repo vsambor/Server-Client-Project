@@ -43,6 +43,13 @@ const schema = mongoose.Schema({
     nationality: { type: String },
     picture: { type: String }
   },
+  position: {
+    // Geolocation type: i.e. Point, Polygon, LineString, MultiPoint etc.
+    type: { type: String },
+
+    // Note: it is in LON, LAT order.
+    coordinates: [Number]
+  },
   vehicles: [{
     id: { type: mongoose.Schema.ObjectId },
     type: {
@@ -74,5 +81,8 @@ const schema = mongoose.Schema({
   token: { type: String },
   isActive: { type: Boolean, default: false }
 }, { timestamps: {} }) // The timestamps adds 2 fields; createdAt and updatedAt in the database.
+
+// Creates an index for position, which allows the geometrical querie like: inclusion, intersection and proximity.
+schema.index({ 'position': '2dsphere' })
 
 module.exports = mongoose.model('user', schema)

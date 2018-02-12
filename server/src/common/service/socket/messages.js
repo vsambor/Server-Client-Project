@@ -3,5 +3,10 @@
  */
 module.exports = {
   connection: 'connection',
-  send_notification: 'notification'
+
+  // SENDERS
+  send_notification: 'notification',
+
+  // RECEIVERS
+  user_position: 'update_user_position'
 }
