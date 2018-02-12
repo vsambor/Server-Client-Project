@@ -58,6 +58,15 @@ export default {
       this.userPosition.lat = position.coords.latitude
       this.userPosition.lng = position.coords.longitude
 
+      // Updates the current position in the database via sockets.
+      this.$socket.emit('update_user_position', {
+        userId: this.$store.getters.currentUser._id,
+        position: {
+          type: 'Point',
+          coordinates: [position.coords.longitude, position.coords.latitude]
+        }
+      })
+
       // Gets all available accidents for admin users.
       if (this.$store.getters.isAdmin) {
         AccidentService.getAll()
