@@ -35,5 +35,38 @@ export default {
    */
   getAllUsers() {
     return axios.get(`http://localhost:8081/api/users`)
+  },
+
+  /**
+   * Add vehicle to the database.
+   *
+   * @param {Number} id - user id.
+   * @param {Object} data - vehicle data.
+   */
+  addVehicle(id, data) {
+    return axios.post(`http://localhost:8081/api/users/${id}/vehicles`, data)
+  },
+
+  /**
+   * Gets the user vehicles.
+   *
+   * @param {Number} id - user id.
+   */
+  getVehicles(id) {
+    return axios.get(`http://localhost:8081/api/users/${id}/vehicles`)
+  },
+
+  /**
+   * Deletes the user vehicle.
+   */
+  deleteVehicle(id, vehicleId) {
+    return axios.delete(`http://localhost:8081/api/users/${id}/vehicles/${vehicleId}`)
+  },
+
+  /**
+   * Updates the user vehicle.
+   */
+  setVehicle(id, vehicleId, data) {
+    return axios.put(`http://localhost:8081/api/users/${id}/vehicles/${vehicleId}`, data)
   }
 }

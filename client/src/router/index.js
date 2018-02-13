@@ -7,6 +7,7 @@ import Login from 'public/Login'
 import Register from 'public/Register'
 import Profile from 'private/Profile'
 import EditProfile from 'private/EditProfile'
+import Vehicles from 'private/Vehicles'
 import Settings from 'private/Settings'
 import Dashboard from 'private/Dashboard'
 import Map from 'private/Map'
@@ -24,6 +25,7 @@ let router = new Router({
     { path: '/register', name: 'register', component: Register, meta: { title: 'SCP | Register' } },
     { path: '/profile', name: 'profile', component: Profile, meta: { title: 'SCP | Profile' }, beforeEnter: requireAuth },
     { path: '/profile/edit', name: 'editProfile', component: EditProfile, meta: { title: 'SCP | Edit Profile' }, beforeEnter: requireAuth },
+    { path: '/vehicles', name: 'vehicles', component: Vehicles, meta: { title: 'SCP | Vehicles' }, beforeEnter: requireAuth },
     { path: '/settings', name: 'settings', component: Settings, meta: { title: 'SCP | Settings' }, beforeEnter: requireAuth },
     { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'SCP | Dashboard' }, beforeEnter: requireAuth },
     { path: '/map', name: 'map', component: Map, meta: { title: 'SCP | Map' }, beforeEnter: requireAuth },

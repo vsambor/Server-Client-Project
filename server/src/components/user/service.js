@@ -101,6 +101,24 @@ exports.deleteVehicle = (req, res) => {
     .catch(err => errorHandler.handle(err, res))
 }
 
+exports.findVehicles = (req, res) => {
+  UserModel.findById(req.params.id)
+    .then(user => res.status(200).send({ success: true, vehicles: user.vehicles }))
+    .catch((err) => errorHandler.handle(err, res))
+}
+
+exports.updateVehicles = (req, res) => {
+  UserModel.update(
+    { _id: req.params.id, vehicles: { $elemMatch: { _id: req.params.vehicleId } } },
+    { $set: restUtil.bindUpdateFields('vehicles', req.body) },
+    { new: true })
+    .then((result) => res.status(202).json({
+      success: true,
+      message: res.__('success.update')
+    }))
+    .catch(err => errorHandler.handle(err, res))
+}
+
 exports.findSettings = (req, res) => {
   UserModel.findById(req.params.id)
     .then(user => res.status(200).send({ success: true, settings: user.settings }))

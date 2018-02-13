@@ -15,6 +15,7 @@ module.exports = {
     notifications: 'Notifications',
     back: 'Back',
     edit: 'Edit',
+    delete: 'Delete',
     save: 'Save',
     cancel: 'Cancel',
     add: 'Add',
@@ -32,7 +33,8 @@ module.exports = {
     users: 'Users',
     start: 'Start',
     end: 'End',
-    clear: 'Clear'
+    clear: 'Clear',
+    vehicles: 'Vehicles'
   },
   login: {
     title: 'Login',
@@ -89,9 +91,17 @@ module.exports = {
     user_profile: 'User Profile',
     user_settings: 'User Settings',
     users_management: 'Users Management',
-    notifications_check: 'Check all notifications'
+    notifications_check: 'Check all notifications',
+    about_vehicles: 'Vehicles management'
   },
   notification: {
     empty: 'No notifications available.'
+  },
+  vehicle: {
+    vehicle: 'vehicle',
+    type: 'Type',
+    model: 'Model',
+    registrationNumber: 'Registration number',
+    color: 'Color'
   }
 }

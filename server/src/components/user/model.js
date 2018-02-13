@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { RoleEnum, VehicleEnum } = require('../../common/util/enums')
+const Enums = require('../enum/model')
 const i18n = require('../../../config/i18n')
 
 const schema = mongoose.Schema({
@@ -21,10 +21,10 @@ const schema = mongoose.Schema({
   role: {
     type: String,
     enum: {
-      values: RoleEnum,
-      message: i18n.__('error.validation.fieldType.enum', RoleEnum.join(', '))
+      values: Enums.role,
+      message: i18n.__('error.validation.fieldType.enum', Enums.role.join(', '))
     },
-    default: RoleEnum[2]
+    default: Enums.role[2]
   },
   profile: {
     firstName: {
@@ -44,11 +44,12 @@ const schema = mongoose.Schema({
     picture: { type: String }
   },
   vehicles: [{
+    id: { type: mongoose.Schema.ObjectId },
     type: {
       type: String,
       enum: {
-        values: VehicleEnum,
-        message: i18n.__('error.validation.fieldType.enum', VehicleEnum.join(', '))
+        values: Object.keys(Enums.vehicle),
+        message: i18n.__('error.validation.fieldType.enum', Object.keys(Enums.vehicle).join(', '))
       }
     },
     model: { type: String },
