@@ -7,6 +7,9 @@ var configBase = {
   },
   db: {
     url: 'mongodb://localhost/scp'
+  },
+  sparql: {
+    endpoint: 'http://localhost:3030/hello/sparql'
   }
 }
 
