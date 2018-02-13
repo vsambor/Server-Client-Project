@@ -18,6 +18,13 @@ exports.populateAdmin = () => {
       age: 50,
       nationality: 'German',
       picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/220px-Albert_Einstein_Head.jpg'
+    },
+    position: {
+      type: 'Point',
+      coordinates: [
+        7.108201,
+        43.5727245
+      ]
     }
   })
 
@@ -57,7 +64,14 @@ exports.populateUser = () => {
         registrationNumber: '777',
         color: 'red'
       }
-    ]
+    ],
+    position: {
+      type: 'Point',
+      coordinates: [
+        7.108201,
+        43.5727245
+      ]
+    }
   })
 
   user.save(user)
