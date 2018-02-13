@@ -5,6 +5,12 @@
       <q-item-side icon="account circle" />
       <q-item-main :label="$t('general.profile')" :sublabel="$t('side_menu.user_profile')" />
     </q-side-link>
+
+    <q-side-link v-if="$store.getters.isLogged" item to="/vehicles">
+      <q-item-side icon="directions car" />
+      <q-item-main :label="$t('general.vehicles')" :sublabel="$t('side_menu.about_vehicles')" />
+    </q-side-link>
+
     <q-side-link v-if="$store.getters.isLogged" item to="/notifications">
       <q-item-side icon="event available" />
       <q-item-main :label="$t('general.notifications')" :sublabel="$t('side_menu.notifications_check')" />

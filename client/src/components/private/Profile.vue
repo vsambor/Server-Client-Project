@@ -56,16 +56,17 @@
         </q-item>
 
         <!-- Vehicles -->
-        <q-item>
-          <q-item-side>
-            <q-item-tile icon="motorcycle" />
-          </q-item-side>
-          <q-item-main>
-            <q-item-tile label>{{$t('profile.vehicles_number')}}</q-item-tile>
-            <q-item-tile sublabel>{{$store.getters.currentUser.vehicles.length}}</q-item-tile>
-          </q-item-main>
-        </q-item>
-
+        <q-side-link v-if="$store.getters.isLogged" item to="/vehicles">
+          <q-item>
+            <q-item-side>
+              <q-item-tile icon="motorcycle" />
+            </q-item-side>
+            <q-item-main>
+              <q-item-tile label>{{$t('profile.vehicles_number')}}</q-item-tile>
+              <q-item-tile sublabel>{{$store.getters.currentUser.vehicles.length}}</q-item-tile>
+            </q-item-main>
+          </q-item>
+        </q-side-link>
         <q-card-separator />
 
         <!-- Edit button -->
