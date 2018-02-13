@@ -42,7 +42,8 @@ module.exports = {
       'mixin': resolve('src/components/common/mixin'),
       'private': resolve('src/components/private'),
       'public': resolve('src/components/public'),
-      'services': resolve('src/services')
+      'services': resolve('src/services'),
+      'helpers': resolve('src/helpers')
     }
   },
   module: {
