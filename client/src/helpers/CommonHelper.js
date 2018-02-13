@@ -1,5 +1,5 @@
 /**
- * Holds all utils methods which are used around the application.
+ * Holds all common utils methods which are used around the application.
  */
 export default {
   /**
