@@ -63,6 +63,13 @@ const schema = mongoose.Schema({
     registrationNumber: { type: String },
     color: { type: String }
   }],
+  notifications: [{
+    id: { type: mongoose.Schema.ObjectId },
+    title: { type: String },
+    body: { type: String },
+    isRead: { type: Boolean, default: false },
+    date: { type: Date }
+  }],
   settings: {
     showNotification: { type: Boolean, default: true },
 

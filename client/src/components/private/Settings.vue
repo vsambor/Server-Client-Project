@@ -42,7 +42,7 @@
 <script>
 import UserService from 'services/UserService'
 import { Toast } from 'quasar-framework'
-import Util from 'services/Util'
+import CommonHelper from 'helpers/CommonHelper'
 
 export default {
   data() {
@@ -68,11 +68,9 @@ export default {
     }
   },
   created() {
-    UserService.getSettings(this.$store.getters.currentUser._id).then(
-      response => {
-        this.settings = response.data.settings
-      }
-    )
+    UserService.getSettings(this.$store.getters.currentUser._id).then(response => {
+      this.settings = response.data.settings
+    })
   },
   methods: {
     /**
@@ -81,7 +79,7 @@ export default {
      * @param {Object} newValue - new setting value.
      * @param {String} field - setting object property.
      */
-    onSettingsChanged: Util.debounce(function(newValue, field) {
+    onSettingsChanged: CommonHelper.debounce(function(newValue, field) {
       if (field === 'appTheme') {
         this.$store.commit('setCurrentTheme', newValue)
       }
@@ -93,10 +91,7 @@ export default {
       this.$store.commit('setCurrentUserSettings', this.settings)
 
       // Updates user settings in the database.
-      UserService.setSettings(
-        this.$store.getters.currentUser._id,
-        this.settings
-      )
+      UserService.setSettings(this.$store.getters.currentUser._id, this.settings)
 
       Toast.create.positive(this.$t('general.updated'))
     }, 500)

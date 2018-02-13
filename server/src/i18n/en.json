@@ -49,5 +49,11 @@
 	},
 	"user": {
 		"activation": "User has been activated"
+	},
+	"notification": {
+		"new_accident": {
+			"title": "New Accident",
+			"body": "There was a new accident registered near to you (location: %s)"
+		}
 	}
 }

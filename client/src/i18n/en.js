@@ -4,6 +4,7 @@ module.exports = {
     fr: 'French',
     ro: 'Romanian',
     ar: 'Arabian',
+    ok: 'OK',
     yes: 'Yes',
     no: 'No',
     map: 'Map',
@@ -18,6 +19,7 @@ module.exports = {
     delete: 'Delete',
     save: 'Save',
     cancel: 'Cancel',
+    new: 'New',
     add: 'Add',
     login: 'Login',
     logout: 'Logout',
@@ -95,6 +97,7 @@ module.exports = {
     about_vehicles: 'Vehicles management'
   },
   notification: {
+    title: 'Notifications',
     empty: 'No notifications available.'
   },
   vehicle: {
@@ -103,5 +106,10 @@ module.exports = {
     model: 'Model',
     registrationNumber: 'Registration number',
     color: 'Color'
+  },
+  confirm: {
+    title: 'Confirmation',
+    generic_question: 'Are you sure?',
+    remove_notifications: 'Are you sure you want to remove the selected notifications?'
   }
 }

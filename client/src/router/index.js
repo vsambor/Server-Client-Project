@@ -13,6 +13,8 @@ import Dashboard from 'private/Dashboard'
 import Map from 'private/Map'
 import PageNotFound from 'public/PageNotFound'
 import Users from 'private/Users'
+import Notification from 'private/notification/Notification'
+import Notifications from 'private/notification/Notifications'
 
 Vue.use(Router)
 
@@ -30,6 +32,8 @@ let router = new Router({
     { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'SCP | Dashboard' }, beforeEnter: requireAuth },
     { path: '/map', name: 'map', component: Map, meta: { title: 'SCP | Map' }, beforeEnter: requireAuth },
     { path: '/users', name: 'users', component: Users, meta: { title: 'SCP | users' }, beforeEnter: requireAuthAdmin },
+    { path: '/notification/:id', name: 'notification', component: Notification, props: true, meta: { title: 'SCP | notification' }, beforeEnter: requireAuth },
+    { path: '/notifications', name: 'notifications', component: Notifications, meta: { title: 'SCP | notifications' }, beforeEnter: requireAuth },
     { path: '*', component: PageNotFound }
   ]
 })

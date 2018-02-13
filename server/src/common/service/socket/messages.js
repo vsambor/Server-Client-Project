@@ -2,7 +2,8 @@
  * Keeps all the constant messages used across the socket functionalities.
  */
 module.exports = {
-  connection: 'connection',
+  connect: 'connection',
+  disconnect: 'disconnect',
 
   // SENDERS
   send_notification: 'notification',

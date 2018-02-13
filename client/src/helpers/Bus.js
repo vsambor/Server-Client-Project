@@ -12,7 +12,7 @@ const Bus = new Vue()
  * Holder for all the application events.
  */
 const BusEvent = {
-
+  NOTIFICATIONS_UPDATED: 'notifications_updated'
 }
 
 export {

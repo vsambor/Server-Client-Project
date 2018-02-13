@@ -4,8 +4,7 @@ const errorHandler = require('../../common/util/errorUtil')
 const mailer = require('../../common/service/mailer')
 const crypto = require('crypto')
 const restUtil = require('../../common/util/restUtil')
-
-const socketSender = require('../../common/service/socket/sender')
+const mongoose = require('mongoose')
 
 exports.add = (req, res) => {
   let newUser = new UserModel(req.body)
@@ -29,10 +28,6 @@ exports.findAll = (req, res) => {
     .then(users => {
       // Cleans all users password before sending to client (for security reasons).
       users.forEach(user => (user.password = null))
-
-      // TRY TO SEND A NOTIFICATION HERE!   TO BE REMOVED
-      // MESSAGES SHOULD BE LOCALIZED IN LANG.
-      socketSender.sendNotification(req.app.get('socketio'), { id: 1, title: 'Users', message: 'Users loaded', date: Date.now() })
 
       res.status(200).send({
         success: true,
@@ -127,10 +122,70 @@ exports.findSettings = (req, res) => {
 
 exports.updateSettings = (req, res) => {
   UserModel.findByIdAndUpdate(req.params.id, { $set: { settings: req.body } }, { safe: true, upsert: true, new: true })
-    .then((result) => res.status(201).json({
+    .then((result) => res.status(202).json({
       success: true,
-      message: res.__('success.add'),
+      message: res.__('success.update'),
       user: result
     }))
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.findAllNotifications = (req, res) => {
+  UserModel.findById(req.params.id)
+    .then(user => {
+      // Sort notifications by date desc, before sending on UI.
+      user.notifications.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+      res.status(200).send({ success: true, count: user.notifications.length, notifications: user.notifications })
+    })
+    .catch((err) => errorHandler.handle(err, res))
+}
+
+exports.findNotificationById = (req, res) => {
+  UserModel.findOne(
+    { _id: req.params.id, notifications: { $elemMatch: { _id: req.params.notificationId } } })
+    .then((foundUser) => {
+      let index = foundUser.notifications.findIndex((not) => String(not._id) === req.params.notificationId)
+      res.status(202).json({
+        success: true,
+        notification: foundUser.notifications[index]
+      })
+    })
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.updateNotification = (req, res) => {
+  UserModel.findOneAndUpdate(
+    { _id: req.params.id, notifications: { $elemMatch: { _id: req.params.notificationId } } },
+    { $set: restUtil.bindUpdateFields('notifications', req.body) },
+    { new: true })
+    .then((updatedUser) => {
+      // Sort notifications by date desc, before sending on UI.
+      updatedUser.notifications.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+      res.status(202).json({
+        success: true,
+        message: res.__('success.update'),
+        notifications: updatedUser.notifications
+      })
+    })
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.deleteNotifications = (req, res) => {
+  UserModel.findOneAndUpdate(
+    { _id: req.params.id },
+    { $pull: { notifications: { _id: { $in: req.params.notificationIds.split(',') } } } },
+    { new: true })
+    .then((updatedUser) => {
+      // Sort notifications by date desc, before sending on UI.
+      updatedUser.notifications.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+      res.status(200).json({
+        success: true,
+        message: res.__('success.delete'),
+        notifications: updatedUser.notifications
+      })
+    })
     .catch(err => errorHandler.handle(err, res))
 }

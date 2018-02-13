@@ -68,5 +68,45 @@ export default {
    */
   setVehicle(id, vehicleId, data) {
     return axios.put(`http://localhost:8081/api/users/${id}/vehicles/${vehicleId}`, data)
+  },
+
+  /**
+   * Returns all user notifications.
+   *
+   * @param {Number} id - the user id.
+   */
+  getAllUserNotifications(id) {
+    return axios.get(`http://localhost:8081/api/users/${id}/notifications`)
+  },
+
+  /**
+   * Gets a single user notification by id.
+   *
+   * @param {Number} userId - the user id.
+   * @param {Number} notificationId - the notification which should be retrieved
+   */
+  getUserNotification(userId, notificationId) {
+    return axios.get(`http://localhost:8081/api/users/${userId}/notifications/${notificationId}`)
+  },
+
+  /**
+   * Updates a user notification.
+   *
+   * @param {Number} userId - the user id.
+   * @param {Number} notificationId - the notfication to be updated.
+   * @param {Object} data - the notification properties values.
+   */
+  updateNotification(userId, notificationId, data) {
+    return axios.put(`http://localhost:8081/api/users/${userId}/notifications/${notificationId}`, data)
+  },
+
+  /**
+   * Deletes user notifications by ids.
+   *
+   * @param {Number} userId - the user which has the notifications.
+   * @param {Array} notificationIds - an array of selected notifications to be deleted.
+   */
+  deleteNotifications(userId, notificationIds) {
+    return axios.delete(`http://localhost:8081/api/users/${userId}/notifications/${notificationIds}`)
   }
 }
