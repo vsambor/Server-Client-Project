@@ -18,4 +18,10 @@ module.exports = (app) => {
   // User's settings routes.
   app.get('/api/users/:id/settings', service.findSettings)
   app.put('/api/users/:id/settings', service.updateSettings)
+
+  // User's notifications routes.
+  app.get('/api/users/:id/notifications', service.findAllNotifications)
+  app.get('/api/users/:id/notifications/:notificationId', service.findNotificationById)
+  app.put('/api/users/:id/notifications/:notificationId', service.updateNotification)
+  app.delete('/api/users/:id/notifications/:notificationIds', service.deleteNotifications)
 }

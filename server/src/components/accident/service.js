@@ -1,4 +1,5 @@
 const AccidentModel = require('./model')
+const UserModel = require('../user/model')
 const errorHandler = require('../../common/util/errorUtil')
 const restUtil = require('../../common/util/restUtil')
 const socketSender = require('../../common/service/socket/sender')
@@ -11,8 +12,45 @@ exports.add = (req, res) => {
     comment.createdAt = comment.updatedAt = Date.now()
   })
 
-  // TRY TO SEND A NOTIFICATION HERE!   TO BE REMOVED
-  socketSender.sendNotification(req.app.get('socketio'), { id: 1, title: 'Accident', message: 'added success', date: Date.now() })
+  let accidentNotification = {
+    title: res.__('notification.new_accident.title'),
+    body: res.__('notification.new_accident.body', newAccident.position.coordinates.join(',')),
+    date: Date.now()
+  }
+
+  UserModel.find({
+    position: {
+      $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates: [newAccident.position.coordinates[0], newAccident.position.coordinates[1]]
+        },
+
+        // Times 1000 because maxDistance is expressed in meters.T he max proximity each user has in settings.
+        $maxDistance: 100 * 1000
+      }
+    }
+  }).then((users) => {
+    let pushOnce = false
+
+    for (let i = 0; i < users.length; ++i) {
+      let currUser = users[i]
+
+      // Don't send notifications for users who disabled this feature in their settings.
+      if (currUser.settings.showNotification === false) {
+        continue
+      }
+
+      UserModel.findByIdAndUpdate(currUser._id, { $push: { notifications: accidentNotification } }, { safe: true, upsert: true, new: true })
+        .then(updatedUser => {
+          // Send the last added notification only once for all users in the loop. (we don't handle each socket separately atm)
+          if (!pushOnce) {
+            pushOnce = true
+            socketSender.sendNotification(req.app.get('socketio'), updatedUser.notifications.pop())
+          }
+        })
+    }
+  })
 
   newAccident.save(newAccident)
     .then(() => res.status(201).json({

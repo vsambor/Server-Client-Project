@@ -27,7 +27,7 @@
       </q-btn>
 
       <!-- Notifications button -->
-      <notifications />
+      <notification-icon v-if="$store.getters.isLogged" />
 
       <!-- Language switcher component -->
       <lang-switch />
@@ -36,21 +36,21 @@
     <!-- Navigation -->
     <q-tabs slot="navigation" :color="$store.getters.currentTheme" inverted>
       <q-route-tab slot="title" icon="home" to="/" replace hide="icon" :label="$t('general.home')" />
-      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="dashboard" to="dashboard" replace hide="icon" :label="$t('general.dashboard')" />
-      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="map" to="map" replace hide="icon" :label="$t('general.map')" />
+      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="dashboard" to="/dashboard" replace hide="icon" :label="$t('general.dashboard')" />
+      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="map" to="/map" replace hide="icon" :label="$t('general.map')" />
     </q-tabs>
   </div>
 </template>
 
 <script>
 import LangSwitch from './LangSwitch'
-import Notifications from './Notifications'
+import NotificationIcon from './NotificationIcon'
 import { Toast } from 'quasar-framework'
 
 export default {
   components: {
     'lang-switch': LangSwitch,
-    notifications: Notifications
+    'notification-icon': NotificationIcon
   },
   created() {
     // Hides the left sider at the beginning.
