@@ -12,6 +12,10 @@
 
  ns1:hasIndiceDeGravite rdf:type owl:DatatypeProperty .
 
+
+
+
+
 <#mineur> rdf:type owl:Class ;
      owl:equivalentClass [ owl:intersectionOf ( ns1:accident
 	        [  rdf:type owl:Restriction ;
