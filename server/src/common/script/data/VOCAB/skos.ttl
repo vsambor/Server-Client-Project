@@ -50,7 +50,7 @@
 <#collision6> a skos:Concept ;
     skos:prefLabel "Autre_collision"@fr .
 
-<#collision7> a skos:Concept ;
+cl:collision7 a skos:Concept ;
     skos:prefLabel "Sans_collision"@fr .
 
 <#organisme1> a skos:Concept ;
