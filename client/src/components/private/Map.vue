@@ -16,8 +16,13 @@
     </div>
 
     <gmap-map ref="map" :center="userPosition" :zoom="$store.getters.currentUserSettings.mapZoom" map-type-id="terrain" style="width: 100%; height: 500px">
-      <!-- All accident markers -->
-      <gmap-marker :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
+
+      <!-- Adds accidents clustering (grouping) -->
+      <gmap-cluster :gridSize="20" :styles="styles">
+        <!-- All accident markers -->
+        <gmap-marker :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
+
+      </gmap-cluster>
 
       <!-- User current position marker -->
       <gmap-marker :position="userPosition" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></gmap-marker>
@@ -49,7 +54,48 @@ export default {
       pointA: {},
       pointB: {},
       directionsService: null,
-      directionsDisplay: null
+      directionsDisplay: null,
+      styles: [
+        {
+          url: '../../../../node_modules/marker-clusterer-plus/images/m1.png',
+          width: 70,
+          height: 70,
+          textColor: 'white',
+          textSize: 13,
+          anchorText: [-8, -8]
+        },
+        {
+          url: '../../../../node_modules/marker-clusterer-plus/images/m2.png',
+          width: 60,
+          height: 60,
+          textColor: 'white',
+          textSize: 13,
+          anchorText: [-1, -2]
+        },
+        {
+          url: '../../../../node_modules/marker-clusterer-plus/images/m3.png',
+          width: 80,
+          height: 80,
+          textColor: 'white',
+          textSize: 13,
+          anchorText: [-5, -7]
+        },
+        {
+          url: '../../../../node_modules/marker-clusterer-plus/images/m4.png',
+          width: 100,
+          height: 100,
+          textColor: 'white',
+          textSize: 13,
+          anchorText: [-9, -11]
+        },
+        {
+          url: '../../../../node_modules/marker-clusterer-plus/images/m5.png',
+          width: 100,
+          height: 100,
+          textColor: 'white',
+          textSize: 13
+        }
+      ]
     }
   },
   mounted() {
