@@ -51,7 +51,9 @@ export default {
     }
   },
   created() {
-    UserService.getAllUsers().then(response => (this.users = response.data.users))
+    UserService.getAllUsers().then(
+      response => (this.users = response.data.users)
+    )
   }
 }
 </script>
