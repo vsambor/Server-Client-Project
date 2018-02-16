@@ -21,7 +21,7 @@
       <gmap-cluster :gridSize="20" :styles="styles" :minimumClusterSize="4">
 
         <!-- All accident markers -->
-        <gmap-marker icon="https://zupimages.net/up/18/07/rk26.png" :clickable="true" @mouseout="infoWinOpen=false" @mouseover="detailAccident(accident.position.coordinates[1], accident.position.coordinates[0], accident)" @click="commentDisplay(accident)" :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
+        <gmap-marker icon="https://zupimages.net/up/18/07/7zai.png" :clickable="true" @mouseout="infoWinOpen=false" @mouseover="detailAccident(accident.position.coordinates[1], accident.position.coordinates[0], accident)" @click="commentDisplay(accident)" :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
 
       </gmap-cluster>
 
@@ -159,7 +159,7 @@ export default {
   data() {
     return {
       colorSeverity: { 1: 'positive', 2: 'lime', 3: 'yellow', 4: 'amber', 5: 'negative' },
-      infoOptions: { pixelOffset: { width: 0, height: -60 } },
+      infoOptions: { pixelOffset: { width: 0, height: -40 } },
       infoWindowPos: { lat: 0, lng: 0 },
       infoWinOpen: false,
       negativeVoteColor: 'faded',
@@ -396,7 +396,7 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Refresh the comments.
      */
     refreshComment() {
       AccidentService.getComments(this.accident._id).then(response => {
@@ -405,9 +405,9 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Comment display.
      *
-     * @param {Number} id - accident id.
+     * @param {Object} accident - accident.
      */
     commentDisplay(accident) {
       this.accident = accident
@@ -416,7 +416,7 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Add a comment.
      */
     addComment() {
       AccidentService.addComment(this.accident._id, {
@@ -432,7 +432,7 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Edit a comment.
      */
     editComment(commentId, data) {
       AccidentService.setComment(this.accident._id, commentId, { text: data }).then(() => {
@@ -443,9 +443,9 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Delete a comment.
      *
-     * @param {Number} id - accident id.
+     * @param {Number} commentId - comment id.
      */
     deleteComment(commentId) {
       AccidentService.deleteComment(this.accident._id, commentId).then(response => {
@@ -456,10 +456,10 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Opens the comment editor.
      *
-     * @param {Number} id - accident id.
-     * @param {Number} id - accident id.
+     * @param {Number} commentId - comment id.
+     * @param {String} commentString - comment.
      */
     openEditMode(commentId, commentString) {
       this.edit = true
@@ -468,7 +468,7 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * CLoses the comment editor.
      */
     closeEditMode() {
       this.edit = false
@@ -477,9 +477,9 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Vote for a accident.
      *
-     * @param {Number} id - accident id.
+     * @param {String} status - status vote.
      */
     vote(status) {
       if (status === 'positiveVote') {
@@ -516,7 +516,7 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Close the modal.
      */
     closeModal() {
       this.closeEditMode()
@@ -525,11 +525,11 @@ export default {
     },
 
     /**
-     * Handles add new accident button.
+     * Detail of the accident.
      *
-     * @param {Number} id - accident id.
-     * @param {Number} id - accident id.
-     * @param {Number} id - accident id.
+     * @param {Number} lat - latitude.
+     * @param {Number} lng - longitude.
+     * @param {Number} accident - accident.
      */
     detailAccident(lat, lng, accident) {
       this.infoWindowPos = { lat: lat, lng: lng }
