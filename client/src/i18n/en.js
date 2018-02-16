@@ -113,5 +113,10 @@ module.exports = {
     title: 'Confirmation',
     generic_question: 'Are you sure?',
     remove_notifications: 'Are you sure you want to remove the selected notifications?'
+  },
+  home: {
+    text: 'SCP is an application which allows it\'s users to see in real time, on the map all the accidents which take place in the user proximity.<br> As a user of our application, you will be real time notified when new actions happens.<br> SCP uses only official, governamental data from incidents reported to the police so the results are the most reliable available. We aim to keep the map as up-to-date as possible.<br><br>Please sign up by clicking on register button in the header bar and we guaranty that will have a great experience.',
+    signature: 'The VIPB - CEO for our respected <i>SCP users</i>'
+  },
   }
 }
