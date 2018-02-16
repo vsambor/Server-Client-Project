@@ -4,7 +4,6 @@ const errorHandler = require('../../common/util/errorUtil')
 const mailer = require('../../common/service/mailer')
 const crypto = require('crypto')
 const restUtil = require('../../common/util/restUtil')
-const mongoose = require('mongoose')
 
 exports.add = (req, res) => {
   let newUser = new UserModel(req.body)
