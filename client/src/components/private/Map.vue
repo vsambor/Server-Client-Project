@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="floating-panel" v-show="showAB">
+    <div id="floating-panel" v-if="showAB">
       <div class="row p-10">
         <!-- Inputs A and B -->
         <gmap-autocomplete id="pointA" @place_changed="onPlaceAChanged" :placeholder="$t('map.start')" class="mr-20"></gmap-autocomplete>
@@ -31,9 +31,25 @@
 
     <h6>{{$t('accident.total', {total: totalAccidents})}}</h6>
 
-    <div class="row justify-center mt-10">
-      <q-btn :color="$store.getters.currentTheme" outline @click="onCreateAccident" :disabled="userPosition.lat === 0">{{$t('accident.add')}}</q-btn>
-    </div>
+    <!-- Expandable Floating Action Button -->
+    <q-fab v-model="fabOpened" :color="$store.getters.currentTheme" icon="keyboard_arrow_right" direction="right" :class="'fixed ' + isSiderOpened ? 'opened_fbtn' : 'closed_fbtn' ">
+
+      <!-- Add accident button -->
+      <q-btn :color="$store.getters.currentTheme" @click="onCreateAccident">{{$t('accident.add')}}</q-btn>
+
+      <!-- Separator -->
+      <div class="ml-30"></div>
+
+      <!-- Toggle directions -->
+      <q-toggle v-model="showAB" :color="$store.getters.currentTheme" @change="fabOpened=false" :label="$t('map.direction_toggle')" />
+
+      <!-- Separator -->
+      <div class="ml-30"></div>
+
+      <!-- Toggle directions -->
+      <q-toggle v-model="showControls" :color="$store.getters.currentTheme" @change="onShowControls" :label="$t('map.controls_toggle')" />
+    </q-fab>
+
   </div>
 </template>
 
@@ -47,7 +63,9 @@ export default {
   data() {
     return {
       accidents: '',
+      fabOpened: false,
       showAB: false,
+      showControls: true,
       avoidAccidents: false,
       totalAccidents: 0,
       userPosition: { lat: 0, lng: 0 },
@@ -98,6 +116,11 @@ export default {
       ]
     }
   },
+  computed: {
+    isSiderOpened() {
+      return this.$parent.$parent.$refs.layout.leftState.openedBig
+    }
+  },
   mounted() {
     // Returns browser current location. (user should allow).
     navigator.geolocation.getCurrentPosition(position => {
@@ -134,7 +157,8 @@ export default {
       this.directionsService = new google.maps.DirectionsService()
       this.directionsDisplay = new google.maps.DirectionsRenderer({ map: this.$refs.map.$mapObject })
 
-      this.showAB = true
+      // Note: the name is <disable...>, so we use the inverse of showControles.
+      this.$refs.map.$mapObject.set('disableDefaultUI', !this.showControls)
     })
   },
   methods: {
@@ -143,6 +167,7 @@ export default {
      */
     onCreateAccident() {
       const vm = this
+      this.fabOpened = false
       let severityModel = 1
       Dialog.create({
         title: vm.$t('accident.add_title'),
@@ -233,6 +258,14 @@ export default {
     },
 
     /**
+     * Handles the map controls toggle button change event.
+     */
+    onShowControls() {
+      this.fabOpened = false
+      this.$refs.map.$mapObject.set('disableDefaultUI', !this.showControls)
+    },
+
+    /**
      * Handles the map clean up from directoins.
      */
     onClearDirection() {
@@ -259,5 +292,15 @@ export default {
   font-family: 'Roboto', 'sans-serif';
   line-height: 30px;
   padding-left: 10px;
+}
+
+.closed_fbtn {
+  left: 10px;
+  bottom: 100px;
+}
+
+.opened_fbtn {
+  left: 10px;
+  bottom: 100px;
 }
 </style>
