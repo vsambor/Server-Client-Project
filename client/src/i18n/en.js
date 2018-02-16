@@ -80,11 +80,11 @@ module.exports = {
       two_front: 'Two frontal'
     },
     date: 'Date',
-    titleDetails: 'Details accident',
     details: {
+      title: 'Accident details',
       dead: 'Dead',
-      seriouslyInjure: 'Seriously injure',
-      lightlyInjurie: 'Lightly injurie',
+      seriouslyInjure: 'Seriously injury',
+      lightlyInjurie: 'Lightly injury',
       unhurt: 'Unhurt',
       light: 'Light',
       organism: 'Organism',
@@ -94,9 +94,10 @@ module.exports = {
       road: 'Road',
       infrastructure: 'Infrastructure',
       nWay: 'Road number',
+      nVote: 'Votes Number',
       specialWay: 'Special road',
       heightDifference: 'Height difference',
-      shapeRoad: 'shape road',
+      shapeRoad: 'Shape road',
       situationAccident: 'Accident situation '
     }
   },

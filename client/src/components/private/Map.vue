@@ -18,21 +18,23 @@
     <gmap-map ref="map" :center="userPosition" :zoom="$store.getters.currentUserSettings.mapZoom" map-type-id="terrain" style="width: 100%; height: 500px">
 
       <!-- Adds accidents clustering (grouping) -->
-      <gmap-cluster :gridSize="20" :styles="styles">
+      <gmap-cluster :gridSize="20" :styles="styles" :minimumClusterSize="4">
+
         <!-- All accident markers -->
-        <gmap-marker :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
+        <gmap-marker icon="https://zupimages.net/up/18/07/rk26.png" :clickable="true" @mouseout="infoWinOpen=false" @mouseover="detailAccident(accident.position.coordinates[1], accident.position.coordinates[0], accident)" @click="commentDisplay(accident)" :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
+
       </gmap-cluster>
 
       <!-- Detail of the accident -->
       <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
         <!-- Date -->
         <div>
-          <b>{{$t('accident.date')}}:</b> {{Date(accident.updatedAt)}}
+          <b>{{$t('accident.date')}}:</b> {{getFormattedDate(accident.updatedAt)}}
         </div>
 
         <!-- Severity -->
         <div>
-          <b>{{$t('accident.severity')}}:</b>
+          <b>{{$t('accident.severity.title')}}:</b>
           <q-chip small :color="colorSeverity[accident.severity]">
             {{accident.severity}}
           </q-chip>
@@ -40,7 +42,7 @@
 
         <!-- Comment -->
         <div>
-          <b>{{$t('accident.nVote')}}:</b>
+          <b>{{$t('accident.details.nVote')}}:</b>
           <q-icon name="comment" color="primary" /> ({{accident.comments.length}})
         </div>
 
@@ -50,9 +52,6 @@
           <q-icon name="fa-thumbs-down" color="negative" /> {{accident.vote.negative}}
         </div>
       </gmap-info-window>
-
-      <!-- All accident markers -->
-      <gmap-marker icon="https://zupimages.net/up/18/07/rk26.png" :clickable="true" @mouseout="infoWinOpen=false" @mouseover="detailAccident(accident.position.coordinates[1], accident.position.coordinates[0], accident)" @click="commentDisplay(accident)" :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
 
       <!-- User current position marker -->
       <gmap-marker :position="userPosition" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></gmap-marker>
@@ -81,7 +80,6 @@
       <q-toggle v-model="showControls" :color="$store.getters.currentTheme" @change="onShowControls" :label="$t('map.controls_toggle')" />
     </q-fab>
 
-   
     <!-- Popup for comments -->
     <q-modal @escape-key="closeModal" @close="closeModal" v-model="open" minimized :content-css="{ padding: '20px',paddingTop: '5px', minWidth: '80vw', maxWidth: '80vw',maxHeight: '80vw'}">
       <div>
@@ -105,8 +103,8 @@
             </div>
           </div>
         </div>
-        <q-collapsible icon="fa-exclamation-triangle" :label="$t('accident.titleDetails')">
-          <div v-for="(value, key) in accident.details" :key="key">
+        <q-collapsible icon="fa-exclamation-triangle" :label="$t('accident.details.title')">
+          <div v-for="(value, key) in accident.details" :key="key" class="mt-5">
             <b>{{$t('accident.details.' + key)}}:</b> {{value}}
           </div>
         </q-collapsible>
@@ -115,7 +113,7 @@
         <hr class="mb-20">
         <q-list v-if="comments.length !== 0">
           <!-- Comment -->
-          <q-collapsible @open="closeEditMode" @close="closeEditMode" :avatar="comment.picture" :label="comment.author" :sublabel="Date(comment.updatedAt)" v-for="comment in comments" :key="comment.id">
+          <q-collapsible @open="closeEditMode" @close="closeEditMode" :avatar="comment.picture" :label="comment.author" :sublabel="getFormattedDate(comment.updatedAt)" v-for="comment in comments" :key="comment.id">
             <div>
               {{ comment.text }}
             </div>
@@ -153,6 +151,7 @@
 <script>
 import AccidentService from 'services/AccidentService'
 import { Dialog, Toast, Alert } from 'quasar-framework'
+import moment from 'moment'
 import 'quasar-extras/animate/bounceInRight.css'
 import 'quasar-extras/animate/bounceOutRight.css'
 
@@ -272,6 +271,16 @@ export default {
     })
   },
   methods: {
+    /**
+     * Returnes formatted date in date and minutes format.
+     *
+     * @param {Date} date - the date which needs to be formatted.
+     * @return {Date} - the formatted date.
+     */
+    getFormattedDate(date) {
+      return moment(date).format('MM/DD/YYYY hh:mm')
+    },
+
     /**
      * Handles add new accident button.
      */
@@ -457,6 +466,7 @@ export default {
       this.editCommentId = commentId
       this.comment = commentString
     },
+
     /**
      * Handles add new accident button.
      */
@@ -465,6 +475,7 @@ export default {
       this.comment = ''
       this.editCommentId = ''
     },
+
     /**
      * Handles add new accident button.
      *
@@ -503,6 +514,7 @@ export default {
         Toast.create.positive(this.$t('general.updated'))
       })
     },
+
     /**
      * Handles add new accident button.
      */
@@ -511,6 +523,7 @@ export default {
       this.negativeVoteColor = 'faded'
       this.positiveVoteColor = 'faded'
     },
+
     /**
      * Handles add new accident button.
      *
