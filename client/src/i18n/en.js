@@ -65,7 +65,19 @@ module.exports = {
     total: 'Total accidents: {total}',
     add_title: 'Add Accident',
     add_message: 'The accident with location {location} will be created.',
-    severity: 'Severity'
+    severity: {
+      title: 'Severity',
+      minor: 'Minor',
+      moderate: 'Moderate',
+      serious: 'Serious',
+      xserious: 'Extremly Serious'
+    },
+    number: {
+      three_more: 'Three or more',
+      two_side: 'Two by side',
+      two_back: 'Two by back',
+      two_front: 'Two frontal'
+    }
   },
   footer: {
     rights: 'All rights reserved'
@@ -114,9 +126,20 @@ module.exports = {
     generic_question: 'Are you sure?',
     remove_notifications: 'Are you sure you want to remove the selected notifications?'
   },
+  stats: {
+    title1: 'Accidents number by severity',
+    title2: 'Accidents number by collision\'s kind',
+    title3: 'Accidents number by collision',
+    title4: 'Accidents number by collisios with vehicules',
+    accidents_collision: 'Accidents with collision',
+    accidents_no_collision: 'Accidents without collision',
+    accidents_vehicles_colision: 'Accidents with collision with vehicules',
+    accidents_other_vehicukes: 'Accidents with other vehicules',
+    accidents_vehicles_not: 'Accidents with vehicles or not'
+  },
   home: {
     text: 'SCP is an application which allows it\'s users to see in real time, on the map all the accidents which take place in the user proximity.<br> As a user of our application, you will be real time notified when new actions happens.<br> SCP uses only official, governamental data from incidents reported to the police so the results are the most reliable available. We aim to keep the map as up-to-date as possible.<br><br>Please sign up by clicking on register button in the header bar and we guaranty that will have a great experience.',
-    signature: 'The VIPB - CEO for our respected <i>SCP users</i>'
+    signature: 'The BIPV - CEO, for our respected <i>SCP users</i>'
   },
   about: {
     title: 'About this app',

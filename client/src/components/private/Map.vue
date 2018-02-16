@@ -177,7 +177,7 @@ export default {
         form: {
           step: {
             type: 'slider',
-            label: `<b>${vm.$t('accident.severity')}</b>`,
+            label: `<b>${vm.$t('accident.severity.title')}</b>`,
             model: severityModel,
             min: 1,
             max: 5,

@@ -52,6 +52,7 @@ server-client-project is a class project.
 - [mocha](https://mochajs.org/)
 - [nightwatch](http://nightwatchjs.org/)
 - [vue-socket.io](https://github.com/MetinSeylan/Vue-Socket.io)
+- [vue-chartjs](https://github.com/apertureless/vue-chartjs)
 
 ## Database
 

@@ -5,31 +5,27 @@
 <script>
 import StatsService from 'services/StatsService'
 import PieHandler from 'common/chart/PieHandler'
+
 export default {
   components: { PieHandler },
-  data: () => ({
-    mydata: null
-  }),
-  async created() {
-    StatsService.getAccidentCollisionVehiculesOrNot().then(
-      response =>
-        (this.mydata = {
-          labels: [
-            'Accidents with collision with vehicules',
-            'Accidents with other vehicules'
-          ],
-          datasets: [
-            {
-              label: 'Accidents with vehicles or not',
-              data: [
-                response.data.vehiculeCollision,
-                response.data.otherCollision
-              ],
-              backgroundColor: ['#6495ED', '#FFF8DC']
-            }
-          ]
-        })
-    )
+  data() {
+    return {
+      mydata: null
+    }
+  },
+  created() {
+    StatsService.getAccidentCollisionVehiculesOrNot().then(response => {
+      this.mydata = {
+        labels: [this.$t('stats.accidents_vehicles_colision'), this.$t('stats.accidents_other_vehicukes')],
+        datasets: [
+          {
+            label: this.$t('stats.accidents_vehicles_not'),
+            data: [response.data.vehiculeCollision, response.data.otherCollision],
+            backgroundColor: ['#6495ED', '#FFF8DC']
+          }
+        ]
+      }
+    })
   }
 }
 </script>
