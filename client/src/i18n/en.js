@@ -61,6 +61,7 @@ module.exports = {
     nationality: 'Nationality'
   },
   accident: {
+    title: 'Accident',
     add: 'Add accident',
     total: 'Total accidents: {total}',
     add_title: 'Add Accident',
@@ -77,7 +78,33 @@ module.exports = {
       two_side: 'Two by side',
       two_back: 'Two by back',
       two_front: 'Two frontal'
+    },
+    date: 'Date',
+    titleDetails: 'Details accident',
+    details: {
+      dead: 'Dead',
+      seriouslyInjure: 'Seriously injure',
+      lightlyInjurie: 'Lightly injurie',
+      unhurt: 'Unhurt',
+      light: 'Light',
+      organism: 'Organism',
+      intersection: 'Intersection',
+      weather: 'Weather',
+      crash: 'Crash',
+      road: 'Road',
+      infrastructure: 'Infrastructure',
+      nWay: 'Road number',
+      specialWay: 'Special road',
+      heightDifference: 'Height difference',
+      shapeRoad: 'shape road',
+      situationAccident: 'Accident situation '
     }
+  },
+  comment: {
+    comment_accident: 'Comment accident',
+    comment: 'Comment',
+    no_comment: 'No comment',
+    edit_comment: 'Edit comment'
   },
   footer: {
     rights: 'All rights reserved'
@@ -118,7 +145,7 @@ module.exports = {
     vehicle: 'vehicle',
     type: 'Type',
     model: 'Model',
-    registrationNumber: 'Registration number',
+    registration_number: 'Registration number',
     color: 'Color'
   },
   confirm: {

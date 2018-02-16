@@ -21,14 +21,45 @@
       <gmap-cluster :gridSize="20" :styles="styles">
         <!-- All accident markers -->
         <gmap-marker :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
-
       </gmap-cluster>
+
+      <!-- Detail of the accident -->
+      <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+        <!-- Date -->
+        <div>
+          <b>{{$t('accident.date')}}:</b> {{Date(accident.updatedAt)}}
+        </div>
+
+        <!-- Severity -->
+        <div>
+          <b>{{$t('accident.severity')}}:</b>
+          <q-chip small :color="colorSeverity[accident.severity]">
+            {{accident.severity}}
+          </q-chip>
+        </div>
+
+        <!-- Comment -->
+        <div>
+          <b>{{$t('accident.nVote')}}:</b>
+          <q-icon name="comment" color="primary" /> ({{accident.comments.length}})
+        </div>
+
+        <!-- Vote -->
+        <div>
+          <q-icon name="fa-thumbs-up" color="positive" /> {{accident.vote.positive}}
+          <q-icon name="fa-thumbs-down" color="negative" /> {{accident.vote.negative}}
+        </div>
+      </gmap-info-window>
+
+      <!-- All accident markers -->
+      <gmap-marker icon="https://zupimages.net/up/18/07/rk26.png" :clickable="true" @mouseout="infoWinOpen=false" @mouseover="detailAccident(accident.position.coordinates[1], accident.position.coordinates[0], accident)" @click="commentDisplay(accident)" :key="index" v-for="(accident, index) in accidents" :position="{ lat:accident.position.coordinates[1], lng: accident.position.coordinates[0], }"></gmap-marker>
 
       <!-- User current position marker -->
       <gmap-marker :position="userPosition" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></gmap-marker>
 
     </gmap-map>
 
+    <!-- Total accident -->
     <h6>{{$t('accident.total', {total: totalAccidents})}}</h6>
 
     <!-- Expandable Floating Action Button -->
@@ -50,6 +81,72 @@
       <q-toggle v-model="showControls" :color="$store.getters.currentTheme" @change="onShowControls" :label="$t('map.controls_toggle')" />
     </q-fab>
 
+   
+    <!-- Popup for comments -->
+    <q-modal @escape-key="closeModal" @close="closeModal" v-model="open" minimized :content-css="{ padding: '20px',paddingTop: '5px', minWidth: '80vw', maxWidth: '80vw',maxHeight: '80vw'}">
+      <div>
+
+        <div class="row">
+          <div class="col-sm">
+            <h5>{{$t('accident.title')}}</h5>
+          </div>
+          <!-- Vote -->
+          <div class="col-sm pt-15">
+            <div class="text-right">
+              <!-- Positive -->
+              <q-btn flat round :color="positiveVoteColor" icon="fa-thumbs-up" @click="vote('positiveVote')">
+                <q-chip floating color="positive">{{accident.vote.positive}}</q-chip>
+              </q-btn>
+
+              <!-- Negative -->
+              <q-btn flat round :color="negativeVoteColor" icon="fa-thumbs-down" @click="vote('negativeVote')">
+                <q-chip floating color="negative">{{accident.vote.negative}}</q-chip>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+        <q-collapsible icon="fa-exclamation-triangle" :label="$t('accident.titleDetails')">
+          <div v-for="(value, key) in accident.details" :key="key">
+            <b>{{$t('accident.details.' + key)}}:</b> {{value}}
+          </div>
+        </q-collapsible>
+        <hr class="mb-20">
+        <h5>{{$t('comment.comment_accident')}}</h5>
+        <hr class="mb-20">
+        <q-list v-if="comments.length !== 0">
+          <!-- Comment -->
+          <q-collapsible @open="closeEditMode" @close="closeEditMode" :avatar="comment.picture" :label="comment.author" :sublabel="Date(comment.updatedAt)" v-for="comment in comments" :key="comment.id">
+            <div>
+              {{ comment.text }}
+            </div>
+
+            <!-- Edit/delet -->
+            <div v-if="$store.getters.currentUser._id === comment.userId || $store.getters.isAdmin" class="text-right">
+              <q-btn round flat small color="positive" icon="edit" @click="openEditMode(comment._id, comment.text)" />
+              <q-btn round flat small color="negative" icon="delete" @click="deleteComment(comment._id)" />
+            </div>
+          </q-collapsible>
+        </q-list>
+        <p v-else>{{$t('comment.no_comment')}}</p>
+        <hr class="mb-20 mt-10">
+
+        <!-- Add comment -->
+        <div v-if="edit === false">
+          <q-input v-model="comment" type="textarea" :float-label="$t('comment.comment')" :color="$store.getters.currentTheme " />
+          <div class="text-right">
+            <q-btn icon="insert comment" :color="$store.getters.currentTheme " @click="addComment">{{$t('comment.comment')}}</q-btn>
+          </div>
+        </div>
+
+        <!-- Edits comment -->
+        <div v-else>
+          <q-input v-model="comment" type="textarea" :float-label="$t('comment.comment')" :color="$store.getters.currentTheme " />
+          <div class="text-right">
+            <q-btn icon="insert comment" :color="$store.getters.currentTheme " @click="editComment(editCommentId,comment)">{{$t('comment.edit_comment')}}</q-btn>
+          </div>
+        </div>
+      </div>
+    </q-modal>
   </div>
 </template>
 
@@ -62,8 +159,20 @@ import 'quasar-extras/animate/bounceOutRight.css'
 export default {
   data() {
     return {
+      colorSeverity: { 1: 'positive', 2: 'lime', 3: 'yellow', 4: 'amber', 5: 'negative' },
+      infoOptions: { pixelOffset: { width: 0, height: -60 } },
+      infoWindowPos: { lat: 0, lng: 0 },
+      infoWinOpen: false,
+      negativeVoteColor: 'faded',
+      positiveVoteColor: 'faded',
+      edit: false,
+      comments: {},
+      comment: '',
+      editCommentId: '',
+      open: false,
       accidents: '',
       fabOpened: false,
+      accident: { vote: { posotive: 0, negative: 0 }, comments: [] },
       showAB: false,
       showControls: true,
       avoidAccidents: false,
@@ -138,6 +247,7 @@ export default {
 
       // Gets all available accidents for admin users.
       if (this.$store.getters.isAdmin) {
+        // if (this.$store.getters.isLogged) {
         AccidentService.getAll()
           .then(response => {
             this.accidents = response.data.accidents
@@ -274,6 +384,144 @@ export default {
       this.pointA = {}
       this.pointB = {}
       this.directionsDisplay.set('directions', null)
+    },
+
+    /**
+     * Handles add new accident button.
+     */
+    refreshComment() {
+      AccidentService.getComments(this.accident._id).then(response => {
+        this.comments = response.data.comments
+      })
+    },
+
+    /**
+     * Handles add new accident button.
+     *
+     * @param {Number} id - accident id.
+     */
+    commentDisplay(accident) {
+      this.accident = accident
+      this.refreshComment()
+      this.open = true
+    },
+
+    /**
+     * Handles add new accident button.
+     */
+    addComment() {
+      AccidentService.addComment(this.accident._id, {
+        text: this.comment,
+        picture: this.$store.getters.currentUser.profile.picture,
+        userId: this.$store.getters.currentUser._id,
+        author: this.$store.getters.currentUser.profile.firstName + ' ' + this.$store.getters.currentUser.profile.lastName
+      }).then(() => {
+        this.refreshComment()
+        this.closeEditMode()
+        Toast.create.positive(this.$t('general.added'))
+      })
+    },
+
+    /**
+     * Handles add new accident button.
+     */
+    editComment(commentId, data) {
+      AccidentService.setComment(this.accident._id, commentId, { text: data }).then(() => {
+        this.refreshComment()
+        this.closeEditMode()
+        Toast.create.positive(this.$t('general.updated'))
+      })
+    },
+
+    /**
+     * Handles add new accident button.
+     *
+     * @param {Number} id - accident id.
+     */
+    deleteComment(commentId) {
+      AccidentService.deleteComment(this.accident._id, commentId).then(response => {
+        this.refreshComment()
+        this.closeEditMode()
+        Toast.create.negative(this.$t('general.delete'))
+      })
+    },
+
+    /**
+     * Handles add new accident button.
+     *
+     * @param {Number} id - accident id.
+     * @param {Number} id - accident id.
+     */
+    openEditMode(commentId, commentString) {
+      this.edit = true
+      this.editCommentId = commentId
+      this.comment = commentString
+    },
+    /**
+     * Handles add new accident button.
+     */
+    closeEditMode() {
+      this.edit = false
+      this.comment = ''
+      this.editCommentId = ''
+    },
+    /**
+     * Handles add new accident button.
+     *
+     * @param {Number} id - accident id.
+     */
+    vote(status) {
+      if (status === 'positiveVote') {
+        if (this.positiveVoteColor === 'faded') {
+          this.positiveVoteColor = 'positive'
+          this.accident.vote.positive += 1
+          if (this.negativeVoteColor === 'negative') {
+            this.negativeVoteColor = 'faded'
+            this.accident.vote.negative -= 1
+          }
+        } else {
+          this.positiveVoteColor = 'faded'
+          this.accident.vote.positive -= 1
+        }
+      } else {
+        if (this.negativeVoteColor === 'faded') {
+          this.negativeVoteColor = 'negative'
+          this.accident.vote.negative += 1
+          if (this.positiveVoteColor === 'positive') {
+            this.positiveVoteColor = 'faded'
+            this.accident.vote.positive -= 1
+          }
+        } else {
+          this.negativeVoteColor = 'faded'
+          this.accident.vote.negative -= 1
+        }
+      }
+      AccidentService.setVote(this.accident._id, {
+        positive: this.accident.vote.positive,
+        negative: this.accident.vote.negative
+      }).then(response => {
+        Toast.create.positive(this.$t('general.updated'))
+      })
+    },
+    /**
+     * Handles add new accident button.
+     */
+    closeModal() {
+      this.closeEditMode()
+      this.negativeVoteColor = 'faded'
+      this.positiveVoteColor = 'faded'
+    },
+    /**
+     * Handles add new accident button.
+     *
+     * @param {Number} id - accident id.
+     * @param {Number} id - accident id.
+     * @param {Number} id - accident id.
+     */
+    detailAccident(lat, lng, accident) {
+      this.infoWindowPos = { lat: lat, lng: lng }
+      this.accident = accident
+      this.infoWinOpen = true
     }
   }
 }

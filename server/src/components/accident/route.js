@@ -10,5 +10,8 @@ module.exports = (app) => {
 
   // Accident's comments routes.
   app.post('/api/accidents/:id/comments', service.addComment)
+  app.get('/api/accidents/:id/comments', service.findComments)
+  app.put('/api/accidents/:id/comments/:commentId', service.updateComment)
   app.delete('/api/accidents/:id/comments/:commentId', service.deleteComment)
+  app.put('/api/accidents/:id/vote', service.updateVote)
 }

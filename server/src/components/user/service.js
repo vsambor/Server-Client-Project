@@ -101,7 +101,7 @@ exports.findVehicles = (req, res) => {
     .catch((err) => errorHandler.handle(err, res))
 }
 
-exports.updateVehicles = (req, res) => {
+exports.updateVehicle = (req, res) => {
   UserModel.update(
     { _id: req.params.id, vehicles: { $elemMatch: { _id: req.params.vehicleId } } },
     { $set: restUtil.bindUpdateFields('vehicles', req.body) },

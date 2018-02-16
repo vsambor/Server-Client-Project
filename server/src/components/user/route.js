@@ -13,7 +13,7 @@ module.exports = (app) => {
   app.post('/api/users/:id/vehicles', service.addVehicle)
   app.get('/api/users/:id/vehicles', service.findVehicles)
   app.delete('/api/users/:id/vehicles/:vehicleId', service.deleteVehicle)
-  app.put('/api/users/:id/vehicles/:vehicleId', service.updateVehicles)
+  app.put('/api/users/:id/vehicles/:vehicleId', service.updateVehicle)
 
   // User's settings routes.
   app.get('/api/users/:id/settings', service.findSettings)

@@ -8,13 +8,13 @@
 
       <template slot="selection" slot-scope="selection">
         <!-- Delete -->
-        <q-btn flat :color="$store.getters.currentTheme" @click="deleteVehicle(selection.rows[0].data._id)">
+        <q-btn flat color="negative" @click="deleteVehicle(selection.rows[0].data._id)">
           <q-icon name="delete" />
           <q-tooltip>{{$t('general.delete')}}</q-tooltip>
         </q-btn>
 
         <!-- Edit -->
-        <q-btn flat :color="$store.getters.currentTheme" @click="editVehicle(selection.rows[0].data)">
+        <q-btn flat color="positive" @click="editVehicle(selection.rows[0].data)">
           <q-icon name="edit" />
           <q-tooltip>{{$t('general.edit')}}</q-tooltip>
         </q-btn>
@@ -100,7 +100,7 @@ export default {
           },
           registrationNumber: {
             type: 'text',
-            label: this.$t('vehicle.registrationNumber'),
+            label: this.$t('vehicle.registration_number'),
             model: vehicle.registrationNumber
           },
           color: {

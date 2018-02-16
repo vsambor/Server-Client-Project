@@ -44,5 +44,58 @@ export default {
    */
   add(data) {
     return axios.post('http://localhost:8081/api/accidents', data)
+  },
+
+  /**
+   * Updates accident.
+   */
+  set(id, data) {
+    return axios.put(`http://localhost:8081/api/accidents/${id}`, data)
+  },
+
+  /**
+   * Add comment to the accident.
+   *
+   * @param {Number} id - accident id.
+   * @param {Object} data - new comment object.
+   * @return {Promise} - comment data on success.
+   */
+  addComment(id, data) {
+    return axios.post(`http://localhost:8081/api/accidents/${id}/comments`, data)
+  },
+
+  /**
+   * Gets all comments to the accident.
+   *
+   * @param {Number} id - accident id.
+   * @return {Promise} - comment data on success.
+   */
+  getComments(id) {
+    return axios.get(`http://localhost:8081/api/accidents/${id}/comments`)
+  },
+
+  /**
+   * Deletes the comment to the accident.
+   *
+   * @param {Number} id - accident id.
+   * @param {Number} commentId - comment id.
+   * @return {Promise} - comment data on success.
+   */
+  deleteComment(id, commentId) {
+    return axios.delete(`http://localhost:8081/api/accidents/${id}/comments/${commentId}`)
+  },
+
+  /**
+   * Updates the comment accident.
+   */
+  setComment(id, commentId, data) {
+    return axios.put(`http://localhost:8081/api/accidents/${id}/comments/${commentId}`, data)
+  },
+
+  /**
+   * Updates vote accident.
+   */
+  setVote(id, data) {
+    return axios.put(`http://localhost:8081/api/accidents/${id}/vote`, data)
   }
 }
