@@ -32,3 +32,11 @@ export default {
   }
 }
 </script>
+
+<style>
+/* Fix scroll bar which appears on all pages, when is not needed. */
+.layout-page {
+  min-height: 0px !important;
+}
+</style>
+

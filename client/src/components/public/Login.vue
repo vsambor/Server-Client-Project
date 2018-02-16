@@ -7,11 +7,11 @@
         <q-card-main>
           <form>
             <q-field icon="mail" :error="errors.has('email')" :error-label="errors.first('email')">
-              <q-input type="email" v-model="email" v-validate="'required|email'" name="email" :float-label="star($t('attributes.email'))" />
+              <q-input type="email" v-model="email" v-validate="'required|email'" name="email" :float-label="star($t('attributes.email'))" @keyup.enter="validateAndSubmit" />
             </q-field>
 
             <q-field icon="lock" :error="errors.has('password')" :error-label="errors.first('password')">
-              <q-input type="password" v-model="password" v-validate="'required'" name="password" :float-label="star($t('attributes.password'))"></q-input>
+              <q-input type="password" v-model="password" v-validate="'required'" name="password" :float-label="star($t('attributes.password'))" @keyup.enter="validateAndSubmit"></q-input>
             </q-field>
           </form>
         </q-card-main>
