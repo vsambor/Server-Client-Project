@@ -82,6 +82,8 @@ module.exports = {
     start: 'Point A',
     end: 'Point B',
     avoid_accidents: 'Avoid Accidents',
+    controls_toggle: 'Toggle controls',
+    direction_toggle: 'Toggle directions',
     directions_failed: 'Directions service failed: '
   },
   profile: {
