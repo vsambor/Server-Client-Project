@@ -26,4 +26,7 @@ exports.populate = () => {
 
     }
   }
+
+  // Fixes the marker cluster library variable (Temp fix, which starts directly each time the server starts).
+  require('./fixMap').fix()
 }
