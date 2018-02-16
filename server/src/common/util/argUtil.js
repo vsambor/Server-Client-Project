@@ -25,7 +25,7 @@ exports.get = (cmd) => {
  */
 exports.hasAnyPopulator = () =>
   getIndex('POPULATE_ADMIN') > -1 || getIndex('POPULATE_USER') > -1 ||
-  getIndex('POPULATE_ACCIDENTS') > -1 || getIndex('GENERATE_RDF') > -1
+  getIndex('POPULATE_ACCIDENTS') > -1
 
 /**
  * Returns the index of <cmd> in node process arguments list.
