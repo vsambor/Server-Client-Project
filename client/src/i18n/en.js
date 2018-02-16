@@ -118,5 +118,10 @@ module.exports = {
     text: 'SCP is an application which allows it\'s users to see in real time, on the map all the accidents which take place in the user proximity.<br> As a user of our application, you will be real time notified when new actions happens.<br> SCP uses only official, governamental data from incidents reported to the police so the results are the most reliable available. We aim to keep the map as up-to-date as possible.<br><br>Please sign up by clicking on register button in the header bar and we guaranty that will have a great experience.',
     signature: 'The VIPB - CEO for our respected <i>SCP users</i>'
   },
+  about: {
+    title: 'About this app',
+    contact_title: 'Contact',
+    contact_text: 'If you want to get in touch with us or you had encountered any issue, feel free to contac us by email: <b>admin@scp.com</b>',
+    text: 'This application allows it\'s users to see in real time all the accidents which take place in their proximity.'
   }
 }
