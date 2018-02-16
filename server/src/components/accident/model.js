@@ -13,16 +13,78 @@ const schema = mongoose.Schema({
   severity: {
     type: Number
   },
-  vote: {
-    type: Number,
-    validate: {
-      validator: Number.isInteger,
-      message: i18n.__('error.validation.fieldType.number')
+  details: {
+    dead: {
+      type: Number
     },
-    default: 0
+    seriouslyInjure: {
+      type: Number
+    },
+    lightlyInjurie: {
+      type: Number
+    },
+    unhurt: {
+      type: Number
+    },
+    light: {
+      type: String
+    },
+    organism: {
+      type: String
+    },
+    intersection: {
+      type: String
+    },
+    weather: {
+      type: String
+    },
+    crash: {
+      type: String
+    },
+    road: {
+      type: String
+    },
+    infrastructure: {
+      type: String
+    },
+    nWay: {
+      type: Number
+    },
+    specialWay: {
+      type: String
+    },
+    heightDifference: {
+      type: String
+    },
+    shapeRoad: {
+      type: String
+    },
+    situationAccident: {
+      type: String
+    }
+  },
+  vote: {
+    positive: {
+      type: Number,
+      validate: {
+        validator: Number.isInteger,
+        message: i18n.__('error.validation.fieldType.number')
+      },
+      default: 0
+    },
+    negative: {
+      type: Number,
+      validate: {
+        validator: Number.isInteger,
+        message: i18n.__('error.validation.fieldType.number')
+      },
+      default: 0
+    }
   },
   comments: [{
     text: { type: String },
+    userId: { type: String },
+    picture: { type: String },
     author: { type: Object },
     createdAt: { type: Date },
     updatedAt: { type: Date }

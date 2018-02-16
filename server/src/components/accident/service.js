@@ -103,7 +103,7 @@ exports.addComment = (req, res) => {
     .then((result) => res.status(201).json({
       success: true,
       message: res.__('success.add'),
-      user: result
+      accident: result
     }))
     .catch(err => errorHandler.handle(err, res))
 }
@@ -113,7 +113,35 @@ exports.deleteComment = (req, res) => {
     .then(result => res.status(200).json({
       success: true,
       message: res.__('success.delete'),
-      user: result
+      accident: result
+    }))
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.updateComment = (req, res) => {
+  AccidentModel.update(
+    { _id: req.params.id, comments: { $elemMatch: { _id: req.params.commentId } } },
+    { $set: restUtil.bindUpdateFields('comments', req.body) },
+    { new: true })
+    .then((result) => res.status(202).json({
+      success: true,
+      message: res.__('success.update')
+    }))
+    .catch(err => errorHandler.handle(err, res))
+}
+
+exports.findComments = (req, res) => {
+  AccidentModel.findById(req.params.id)
+    .then(result => res.status(200).send({ success: true, comments: result.comments }))
+    .catch((err) => errorHandler.handle(err, res))
+}
+
+exports.updateVote = (req, res) => {
+  AccidentModel.findByIdAndUpdate(req.params.id, { $set: { vote: req.body } }, { safe: true, upsert: true, new: true })
+    .then((result) => res.status(201).json({
+      success: true,
+      message: res.__('success.add'),
+      accident: result
     }))
     .catch(err => errorHandler.handle(err, res))
 }
