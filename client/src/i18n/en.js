@@ -170,7 +170,9 @@ module.exports = {
     accidents_vehicles_not: 'Accidents with vehicles or not'
   },
   search_engine: {
-    subject_placeholder: 'query subject here...',
+    subject_placeholder: 'query subject here',
+    property_placeholder: 'query property here',
+    property_value_placeholder: 'the property value',
     condition_placeholder: 'query conditions separated by \';\' (ex: > 10; < 5;)'
   },
   home: {

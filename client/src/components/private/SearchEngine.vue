@@ -9,6 +9,16 @@
           <q-input type="text" v-model="subject" name="subject" :placeholder="$t('search_engine.subject_placeholder')" @keyup.enter="onSearch" />
         </q-field>
 
+        <!-- Search Property -->
+        <q-field icon="search">
+          <q-input type="text" v-model="property" name="property" :placeholder="$t('search_engine.property_placeholder')" @keyup.enter="onSearch" />
+        </q-field>
+
+        <!-- Property Value -->
+        <q-field icon="search">
+          <q-input type="text" v-model="propertyValue" name="property_value" :placeholder="$t('search_engine.property_value_placeholder')" @keyup.enter="onSearch" />
+        </q-field>
+
         <!-- Search Conditions -->
         <q-field icon="fa-question">
           <q-input type="text" v-model="conditions" name="conditions" :placeholder="$t('search_engine.condition_placeholder')" @keyup.enter="onSearch" />
@@ -26,7 +36,7 @@
 
     <!-- Engine Response -->
     <div class="floating-label mt-40">
-      <textarea required class="full-width" v-model="engineResponse"></textarea>
+      <textarea id="response-area" required class="full-width" v-model="engineResponse"></textarea>
       <label>{{$t('general.result')}}</label>
     </div>
   </div>
@@ -39,6 +49,8 @@ export default {
   data() {
     return {
       subject: '',
+      property: '',
+      propertyValue: '',
       conditions: '',
       engineResponse: ''
     }
@@ -49,7 +61,10 @@ export default {
      * Triggers the semantic search engine and retrieve the response.
      */
     onSearch() {
-      EngineService.search(this.generateQuery()).then(response => (this.engineResponse = response.data))
+      EngineService.search(this.generateQuery()).then(
+        response =>
+          (this.engineResponse = JSON.stringify(response.data, null, 2))
+      )
     },
 
     /**
@@ -59,17 +74,26 @@ export default {
      * @return {String} - the query which contains the subject and conditions.
      */
     generateQuery() {
+      let query = {
+        subject: this.subject,
+        property: this.property,
+        propertyValue: this.propertyValue,
+        conditions: ''
+      }
       let queryConditions = this.conditions
         .split(';')
-        .map(el => '?y ' + el.replace(/\s/g, ''))
+        .map(el => '?' + this.propertyValue + el.replace(/\s/g, ''))
         .join(' && ')
 
-      return `subject=${this.subject}&conditions=${queryConditions}`
+      query.conditions = queryConditions
+      return query
     }
   }
 }
 </script>
 
 <style>
-
+#response-area {
+  height: 400px;
+}
 </style>

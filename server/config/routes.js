@@ -8,6 +8,7 @@ module.exports = (app) => {
   require('../src/components/accident').route(app)
   require('../src/components/enum').route(app)
   require('../src/components/stats').route(app)
+  require('../src/components/search').route(app)
 
   // Handles non existing routes i.e 404.
   app.use((req, res) => res.status(404).send({ url: req.originalUrl + ' ' + res.__('general.notFound') }))
