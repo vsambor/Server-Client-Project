@@ -26,6 +26,11 @@
       <q-item-main :label="$t('general.users')" :sublabel="$t('side_menu.users_management')" />
     </q-side-link>
 
+    <q-side-link v-if="$store.getters.isLogged && $store.getters.isAdmin" item to="/search-engine">
+      <q-item-side icon="search" />
+      <q-item-main :label="$t('general.search_engine')" :sublabel="$t('side_menu.search_engine')" />
+    </q-side-link>
+
     <q-side-link item to="/about">
       <q-item-side icon="info" />
       <q-item-main :label="$t('general.about')" :sublabel="$t('side_menu.about_app')" />

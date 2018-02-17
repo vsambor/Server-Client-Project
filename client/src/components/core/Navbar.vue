@@ -36,7 +36,7 @@
     <!-- Navigation -->
     <q-tabs slot="navigation" :color="$store.getters.currentTheme" inverted>
       <q-route-tab slot="title" icon="home" to="/" replace hide="icon" :label="$t('general.home')" />
-      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="dashboard" to="/dashboard" replace hide="icon" :label="$t('general.dashboard')" />
+      <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="dashboard" to="dashboard" replace hide="icon" :label="$t('general.dashboard')" />
       <q-route-tab v-if="$store.getters.isLogged" slot="title" icon="map" to="/map" replace hide="icon" :label="$t('general.map')" />
     </q-tabs>
   </div>

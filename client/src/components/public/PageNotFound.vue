@@ -1,7 +1,7 @@
 <template>
-	<div align="center">
-		<img src="../../../static/404.png" width="700" />
-		<div class="row full-width justify-center mt-10">
+	<div>
+		<div id="bg" class="fullscreen"> </div>
+		<div class="fixed-bottom row full-width justify-center mt-10" style="margin-bottom: 80px">
 			<q-btn flat color="primary" @click="$router.go(-1)">{{$t('general.back')}}</q-btn>
 		</div>
 	</div>
@@ -11,6 +11,14 @@
 export default {}
 </script>
 
-<style scoped>
-
+<style >
+#bg {
+  background-image: url('../../../static/404.png');
+  min-height: 500px;
+  background-size: cover;
+  -moz-background-size: cover; /* Firefox 3.6 */
+  background-position: center; /* Internet Explorer 7/8 */
+  opacity: 0.4;
+  z-index: -1;
+}
 </style>

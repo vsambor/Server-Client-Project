@@ -9,6 +9,7 @@ import Profile from 'private/Profile'
 import EditProfile from 'private/EditProfile'
 import Vehicles from 'private/Vehicles'
 import Settings from 'private/Settings'
+import SearchEngine from 'private/SearchEngine'
 import Dashboard from 'private/Dashboard'
 import Map from 'private/Map'
 import PageNotFound from 'public/PageNotFound'
@@ -29,6 +30,7 @@ let router = new Router({
     { path: '/profile/edit', name: 'editProfile', component: EditProfile, meta: { title: 'SCP | Edit Profile' }, beforeEnter: requireAuth },
     { path: '/vehicles', name: 'vehicles', component: Vehicles, meta: { title: 'SCP | Vehicles' }, beforeEnter: requireAuth },
     { path: '/settings', name: 'settings', component: Settings, meta: { title: 'SCP | Settings' }, beforeEnter: requireAuth },
+    { path: '/search-engine', name: 'engine', component: SearchEngine, meta: { title: 'SCP | Search Engine' }, beforeEnter: requireAuthAdmin },
     { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'SCP | Dashboard' }, beforeEnter: requireAuth },
     { path: '/map', name: 'map', component: Map, meta: { title: 'SCP | Map' }, beforeEnter: requireAuth },
     { path: '/users', name: 'users', component: Users, meta: { title: 'SCP | users' }, beforeEnter: requireAuthAdmin },

@@ -13,6 +13,7 @@ module.exports = {
     profile: 'Profile',
     about: 'About',
     settings: 'Settings',
+    search_engine: 'Search Engine',
     notifications: 'Notifications',
     back: 'Back',
     edit: 'Edit',
@@ -36,7 +37,9 @@ module.exports = {
     start: 'Start',
     end: 'End',
     clear: 'Clear',
-    vehicles: 'Vehicles'
+    vehicles: 'Vehicles',
+    search: 'Search',
+    result: 'Result'
   },
   login: {
     title: 'Login',
@@ -136,7 +139,8 @@ module.exports = {
     user_settings: 'User Settings',
     users_management: 'Users Management',
     notifications_check: 'Check all notifications',
-    about_vehicles: 'Vehicles management'
+    about_vehicles: 'Vehicles management',
+    search_engine: 'Semantic Search Engine'
   },
   notification: {
     title: 'Notifications',
@@ -164,6 +168,10 @@ module.exports = {
     accidents_vehicles_colision: 'Accidents with collision with vehicules',
     accidents_other_vehicukes: 'Accidents with other vehicules',
     accidents_vehicles_not: 'Accidents with vehicles or not'
+  },
+  search_engine: {
+    subject_placeholder: 'query subject here...',
+    condition_placeholder: 'query conditions separated by \';\' (ex: > 10; < 5;)'
   },
   home: {
     text: 'SCP is an application which allows it\'s users to see in real time, on the map all the accidents which take place in the user proximity.<br> As a user of our application, you will be real time notified when new actions happens.<br> SCP uses only official, governamental data from incidents reported to the police so the results are the most reliable available. We aim to keep the map as up-to-date as possible.<br><br>Please sign up by clicking on register button in the header bar and we guaranty that will have a great experience.',
