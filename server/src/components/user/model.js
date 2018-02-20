@@ -41,14 +41,23 @@ const schema = mongoose.Schema({
       min: 0
     },
     nationality: { type: String },
-    picture: { type: String }
+    picture: {
+      type: String,
+      default: 'https://220images.mrowl.com/default-user-profile-photo.png'
+    }
   },
   position: {
     // Geolocation type: i.e. Point, Polygon, LineString, MultiPoint etc.
-    type: { type: String },
+    type: {
+      type: String,
+      default: 'Point'
+    },
 
     // Note: it is in LON, LAT order.
-    coordinates: [Number]
+    coordinates: {
+      type: [Number],
+      default: [0, 0]
+    }
   },
   vehicles: [{
     id: { type: mongoose.Schema.ObjectId },
@@ -81,6 +90,9 @@ const schema = mongoose.Schema({
 
     // Distance in km.
     alertProximity: { type: Number, default: 10 },
+
+    // Distance in m.
+    avoidProximity: { type: Number, default: 50 },
 
     // Map zoom in km.
     mapZoom: { type: Number, default: 15 }

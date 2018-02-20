@@ -23,9 +23,15 @@
         </div>
 
         <!-- Proximity -->
-        <h5>{{$t('settings.proximity')}}</h5>
+        <h5>{{$t('settings.alert_proximity')}}</h5>
         <div class="mb-50">
           <q-slider v-model="settings.alertProximity" label-always :min="1" :max="100" :step="1" :label-value="`${settings.alertProximity} Km`" :color="$store.getters.currentTheme" @change="onSettingsChanged($event, 'alertProximity')" />
+        </div>
+
+        <!-- Avoid accident circle radius -->
+        <h5>{{$t('settings.avoid_proximity')}}</h5>
+        <div class="mb-50">
+          <q-slider v-model="settings.avoidProximity" label-always :min="1" :max="1000" :step="1" :label-value="`${settings.avoidProximity} m`" :color="$store.getters.currentTheme" @change="onSettingsChanged($event, 'avoidProximity')" />
         </div>
 
         <!-- Zoom -->
@@ -52,6 +58,7 @@ export default {
         appTheme: null,
         geo: false,
         alertProximity: 0,
+        avoidProximity: 0,
         mapZoom: 0
       },
       selectOptions: [

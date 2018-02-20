@@ -56,6 +56,10 @@
       <!-- User current position marker -->
       <gmap-marker :position="userPosition" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></gmap-marker>
 
+      <!-- Car simulation position marker -->
+      <gmap-marker :position="simulatorPosition" v-if="simulatorPosition"></gmap-marker>
+
+      <gmap-circle v-for="(proxAccident, index) in proximityAccidents" :key="index" :center="proxAccident.center" :radius="$store.getters.currentUserSettings.avoidProximity"> </gmap-circle>
     </gmap-map>
 
     <!-- Total accident -->
@@ -156,6 +160,21 @@ import 'quasar-extras/animate/bounceInRight.css'
 import 'quasar-extras/animate/bounceOutRight.css'
 
 export default {
+  sockets: {
+    /**
+     * Listens for the <proximity_accident> socket message and handles the display of a circle for the new closesed accidents.
+     *
+     * @param {Object} serverNotification - the notification object provided from the server via socket.emit.
+     */
+    proximity_accident(accidentProximity) {
+      // After adding the accident properties in the proximityAccidents it is automatically displayed on the map.
+      this.proximityAccidents.push(accidentProximity)
+
+      // By using this variable, the backend is abled to check if is needed a new notification,
+      // without being a need to save in database.
+      this.lastNotifiedAccident = accidentProximity.center
+    }
+  },
   data() {
     return {
       colorSeverity: { 1: 'positive', 2: 'lime', 3: 'yellow', 4: 'amber', 5: 'negative' },
@@ -177,6 +196,10 @@ export default {
       avoidAccidents: false,
       totalAccidents: 0,
       userPosition: { lat: 0, lng: 0 },
+      simulatorPosition: null,
+      isSimulationRunning: false,
+      lastNotifiedAccident: null,
+      proximityAccidents: [],
       pointA: {},
       pointB: {},
       directionsService: null,
@@ -235,14 +258,7 @@ export default {
       this.userPosition.lat = position.coords.latitude
       this.userPosition.lng = position.coords.longitude
 
-      // Updates the current position in the database via sockets.
-      this.$socket.emit('update_user_position', {
-        userId: this.$store.getters.currentUser._id,
-        position: {
-          type: 'Point',
-          coordinates: [position.coords.longitude, position.coords.latitude]
-        }
-      })
+      this.updateUserPosition(this.userPosition)
 
       // Gets all available accidents for admin users.
       if (this.$store.getters.isAdmin) {
@@ -351,6 +367,8 @@ export default {
      * It displays on the map the directions between 2 points, by using google services.
      */
     onDirectionGo() {
+      this.lastNotifiedAccident = null
+
       this.directionsService.route(
         {
           origin: this.pointA,
@@ -362,6 +380,8 @@ export default {
         (response, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
             this.directionsDisplay.setDirections(response)
+            this.isSimulationRunning = true
+            this.drivingSimulation(0, response.routes[0].overview_path)
           } else {
             Alert.create({
               enter: 'bounceInRight',
@@ -374,6 +394,47 @@ export default {
           }
         }
       )
+    },
+
+    /**
+     * Updates the user current position via sockets
+     *
+     * @param {Object} position - the new position of the user.
+     */
+    updateUserPosition(position) {
+      this.$socket.emit('update_user_position', {
+        userId: this.$store.getters.currentUser._id,
+        userAvoidProximity: this.$store.getters.currentUser.settings.avoidProximity,
+        position: {
+          type: 'Point',
+          coordinates: [position.lng, position.lat]
+        },
+        avoidAccidents: this.avoidAccidents,
+        lastNotifiedAccident: this.lastNotifiedAccident
+      })
+    },
+
+    /**
+     * Simulates the movement of the user from point A to B.
+     *
+     * @param {Number} i - the iterator count
+     * @param {Array} points - the array of [{lat, lng}] points extracted from the google directions.
+     */
+    drivingSimulation(i, points) {
+      if (this.isSimulationRunning) {
+        setTimeout(() => {
+          this.simulatorPosition = { lat: points[i].lat(), lng: points[i].lng() }
+          i++
+          if (i < points.length) {
+            this.drivingSimulation(i, points)
+
+            // Updates user position; in the backend checks if in proximity there is an accident and user is notified if so.
+            this.updateUserPosition(this.simulatorPosition)
+          } else {
+            Toast.create.info(this.$t('map.arrived_at_destination'))
+          }
+        }, 300) // Simulation speed
+      }
     },
 
     /**
@@ -392,6 +453,10 @@ export default {
       this.$el.querySelector('#pointB').value = ''
       this.pointA = {}
       this.pointB = {}
+      this.isSimulationRunning = false
+      this.simulatorPosition = null
+      this.lastNotifiedAccident = null
+      this.proximityAccidents = []
       this.directionsDisplay.set('directions', null)
     },
 

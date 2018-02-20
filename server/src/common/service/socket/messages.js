@@ -7,6 +7,7 @@ module.exports = {
 
   // SENDERS
   send_notification: 'notification',
+  send_proximity_accident: 'proximity_accident',
 
   // RECEIVERS
   user_position: 'update_user_position'
