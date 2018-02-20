@@ -54,6 +54,11 @@ server-client-project is a class project.
 - [vue-socket.io](https://github.com/MetinSeylan/Vue-Socket.io)
 - [vue-chartjs](https://github.com/apertureless/vue-chartjs)
 
+## Semantic
+- [Download Apache Jena Fuseki 3.6.0](https://jena.apache.org/download/)
+- Put the config.ttl in the folder after unzipping the downloaded file 
+- Run ./fuseki-server --update --mem /ds
+
 ## Database
 
 - [mongodb](https://www.mongodb.com/)
@@ -130,6 +135,13 @@ $ npm run client-dev
 ```
 
 The application is available by default on port `8080`
+
+### Start Semantic Server
+
+*  ./fuseki-server --update config=config.ttl
+* You will have a localhost address for the fuseki server as http://localhost:3030
+* You will now be able to have your own admin interface on localhost 
+* You have to import the output.ttl file ( You must be able to test a query from the localhost:3000 interface, just do a select all so you can be sure that everything works fine )
 
 ### Test Server
 
