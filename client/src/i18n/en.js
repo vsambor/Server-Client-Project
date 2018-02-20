@@ -118,7 +118,8 @@ module.exports = {
     geolocation: 'My location',
     theme: 'Application theme',
     notification: 'Application notification',
-    proximity: 'Accident warning distance',
+    alert_proximity: 'Accident alert warning distance',
+    avoid_proximity: 'Avoid accident radius',
     zoom: 'Default map zoom'
   },
   map: {
@@ -127,7 +128,8 @@ module.exports = {
     avoid_accidents: 'Avoid Accidents',
     controls_toggle: 'Toggle controls',
     direction_toggle: 'Toggle directions',
-    directions_failed: 'Directions service failed: '
+    directions_failed: 'Directions service failed: ',
+    arrived_at_destination: 'You have arrived at your destination'
   },
   profile: {
     edit_title: 'Edit Profile',
