@@ -9,7 +9,7 @@ module.exports = {
     no: 'كلا',
     map: 'الخريطة',
     home: 'الصفحة الرئيسية',
-    dashboard: 'Dashboard',
+    dashboard: 'لوحة التحكم',
     profile: 'الملف الشخصي',
     about: 'حول التطبيق',
     settings: 'الإعدادات',
@@ -26,7 +26,7 @@ module.exports = {
     logout: 'تسجيل الخروج',
     reset: 'مسح',
     register: 'التسجيل',
-    forgot_password: 'نسيت كلمة المرور',
+    forgot_password: 'هل نسيت كلمة المرور',
     language_changed: 'تم تغيير اللغة الى : ',
     change_language: 'تغيير اللغة',
     change_password: 'تغيير كلمة المرور',
@@ -50,126 +50,126 @@ module.exports = {
     success: 'تم تسجيل الخروج بنجاح'
   },
   registration: {
-    title: 'Register',
-    registration_ok: 'Successfully registered!',
-    registration_failed: 'Registration failed: '
+    title: 'تسجيل',
+    registration_ok: 'تم التسجيل بنجاح',
+    registration_failed: 'فشل عملية التسجيل'
   },
   attributes: {
-    email: 'E-mail',
-    password: 'Password',
-    confirm_password: 'Confirm Password',
-    firstName: 'First Name',
-    lastName: 'Last Name',
-    age: 'Age',
-    nationality: 'Nationality'
+    email: 'البريد الاكتروني',
+    password: 'كلمة المرور',
+    confirm_password: 'تأكيد كلمة المرور',
+    firstName: 'الإسم',
+    lastName: 'الشهرة',
+    age: 'العمر',
+    nationality: 'الجنسية'
   },
   accident: {
-    title: 'Accident',
-    add: 'Add accident',
-    total: 'Total accidents: {total}',
-    add_title: 'Add Accident',
+    title: 'حادث',
+    add: 'إضافة حادث',
+    total: 'إجمالي الحوادث: {total}',
+    add_title: 'إضافة حادث',
     add_message: 'The accident with location {location} will be created.',
     severity: {
-      title: 'Severity',
-      minor: 'Minor',
-      moderate: 'Moderate',
-      serious: 'Serious',
-      xserious: 'Extremly Serious'
+      title: 'الخطورة',
+      minor: 'غير خطير',
+      moderate: 'متوسط الخطورة',
+      serious: 'خطر',
+      xserious: 'خطر جداً'
     },
     number: {
-      three_more: 'Three or more',
-      two_side: 'Two by side',
-      two_back: 'Two by back',
-      two_front: 'Two frontal'
+      three_more: 'ثلاثة أو أكثر',
+      two_side: 'إثنين من الجانب',
+      two_back: 'إثنين من الخلف',
+      two_front: 'إثنين من الأمام'
     },
-    date: 'Date',
+    date: 'التاريخ',
     details: {
-      title: 'Accident details',
-      dead: 'Dead',
-      seriouslyInjure: 'Seriously injury',
-      lightlyInjurie: 'Lightly injury',
-      unhurt: 'Unhurt',
-      light: 'Light',
-      organism: 'Organism',
-      intersection: 'Intersection',
-      weather: 'Weather',
-      crash: 'Crash',
-      road: 'Road',
-      infrastructure: 'Infrastructure',
-      nWay: 'Road number',
-      nVote: 'Votes Number',
-      specialWay: 'Special road',
-      heightDifference: 'Height difference',
-      shapeRoad: 'Shape road',
-      situationAccident: 'Accident situation '
+      title: 'تفاصيل الحادث',
+      dead: 'القتلى',
+      seriouslyInjure: 'إصابة خطيرة',
+      lightlyInjurie: 'إصابة طفيفة',
+      unhurt: 'غير متضرر',
+      light: 'الضوء',
+      organism: 'المنظمة',
+      intersection: 'التقاطع',
+      weather: 'الأحوال الجوية',
+      crash: 'تحطم',
+      road: 'الشارع',
+      infrastructure: 'البنية التحتية',
+      nWay: 'رقم الشارع',
+      nVote: 'عدد الأصوات',
+      specialWay: 'طريق خاص',
+      heightDifference: 'فرث الارتفاع',
+      shapeRoad: 'شكل الطريق',
+      situationAccident: 'حالة الحادث'
     }
   },
   comment: {
-    comment_accident: 'Comment accident',
-    comment: 'Comment',
-    no_comment: 'No comment',
-    edit_comment: 'Edit comment'
+    comment_accident: 'التعليقات حول الحادث',
+    comment: 'تغليق',
+    no_comment: 'لا يوجد تعليقات',
+    edit_comment: 'تعديل التعليق'
   },
   footer: {
-    rights: 'All rights reserved'
+    rights: 'جميع الحقوق محفوظة'
   },
   settings: {
-    title: 'General settings',
-    geolocation: 'My location',
-    theme: 'Application theme',
-    notification: 'Application notification',
-    alert_proximity: 'Accident alert warning distance',
-    avoid_proximity: 'Avoid accident radius',
-    zoom: 'Default map zoom'
+    title: 'الإعدادات العامة',
+    geolocation: 'موقعي',
+    theme: 'تغيير لون التطبيق',
+    notification: 'إشعارات التطبيق',
+    alert_proximity: 'مسافة التحذير من الحوادث',
+    avoid_proximity: 'شعاع تفادي الحوادث',
+    zoom: 'حجم الخريطة الأساسي'
   },
   map: {
-    start: 'Point A',
-    end: 'Point B',
-    avoid_accidents: 'Avoid Accidents',
-    controls_toggle: 'Toggle controls',
-    direction_toggle: 'Toggle directions',
-    directions_failed: 'Directions service failed: ',
-    arrived_at_destination: 'You have arrived at your destination'
+    start: 'النقطة أ',
+    end: 'النقطة ب',
+    avoid_accidents: 'تفادي الحوادث',
+    controls_toggle: 'تغيير الضوابط',
+    direction_toggle: 'تغيير الاتجاه',
+    directions_failed: 'فشل تغيير الاتجاه',
+    arrived_at_destination: 'لقد وصلت إلى وجهتك'
   },
   profile: {
-    edit_title: 'Edit Profile',
-    vehicles_number: 'Number of vehicles'
+    edit_title: 'تعديل الملف الشخصي',
+    vehicles_number: 'عدد الآليات'
   },
   side_menu: {
-    about_app: 'About app',
-    user_profile: 'User Profile',
-    user_settings: 'User Settings',
-    users_management: 'Users Management',
-    notifications_check: 'Check all notifications',
-    about_vehicles: 'Vehicles management',
-    search_engine: 'Semantic Search Engine'
+    about_app: 'حول التطبيق',
+    user_profile: 'ملف المستخدم',
+    user_settings: 'إعدادات المستخدم',
+    users_management: 'إدارة المستخدمين',
+    notifications_check: 'التحقق من جميع الاشعارات',
+    about_vehicles: 'إدارة الآليات',
+    search_engine: 'محرك البحث الدلالي'
   },
   notification: {
-    title: 'Notifications',
-    empty: 'No notifications available.'
+    title: 'الإشعارات',
+    empty: 'لا يوجد إشعارات'
   },
   vehicle: {
-    vehicle: 'vehicle',
-    type: 'Type',
-    model: 'Model',
-    registration_number: 'Registration number',
-    color: 'Color'
+    vehicle: 'آلية',
+    type: 'النوع',
+    model: 'الموديل',
+    registration_number: 'رقم التسجبل',
+    color: 'اللون'
   },
   confirm: {
-    title: 'Confirmation',
-    generic_question: 'Are you sure?',
-    remove_notifications: 'Are you sure you want to remove the selected notifications?'
+    title: 'تأكيد',
+    generic_question: 'هل أنت متأكد؟',
+    remove_notifications: 'هل تريد فعلاً إزالة الإشعارات المحددة؟'
   },
   stats: {
-    title1: 'Accidents number by severity',
-    title2: 'Accidents number by collision\'s kind',
-    title3: 'Accidents number by collision',
-    title4: 'Accidents number by collisios with vehicules',
-    accidents_collision: 'Accidents with collision',
-    accidents_no_collision: 'Accidents without collision',
-    accidents_vehicles_colision: 'Accidents with collision with vehicules',
-    accidents_other_vehicukes: 'Accidents with other vehicules',
-    accidents_vehicles_not: 'Accidents with vehicles or not'
+    title1: 'عدد الحوادث بحسب الخطورة',
+    title2: 'عدد الحوادث بحسب نوع التصادم',
+    title3: 'عدد الحوادث حسب التصادم',
+    title4: 'عدد الحوادث بحسب التصادم مع آليات أخرى',
+    accidents_collision: 'حوادث مع تصادم',
+    accidents_no_collision: 'حوادث من دون تصادم',
+    accidents_vehicles_colision: 'حوادث تصادم مع آليات',
+    accidents_other_vehicukes: 'حوادث مع آليات أخرى',
+    accidents_vehicles_not: 'حوادث مع آليات أو لا'
   },
   search_engine: {
     subject_placeholder: 'query subject here',
@@ -178,13 +178,13 @@ module.exports = {
     condition_placeholder: 'query conditions separated by \';\' (ex: > 10; < 5;)'
   },
   home: {
-    text: 'SCP is an application which allows it\'s users to see in real time, on the map all the accidents which take place in the user proximity.<br> As a user of our application, you will be real time notified when new actions happens.<br> SCP uses only official, governamental data from incidents reported to the police so the results are the most reliable available. We aim to keep the map as up-to-date as possible.<br><br>Please sign up by clicking on register button in the header bar and we guaranty that will have a great experience.',
+    text: 'إن هذا التطبيق يسمح للمستخدمين بمشاهدة جميع حوادث السير الحاصلة بشكل مباشر على الخريطة, كما سوف يتم ارسال اشعارات للمستخدم في حال حدوث حادث سير بالقرب منه. <br> يرجى الاشتراك عن طريق الضغط على التسجيل اعلى الصفحة',
     signature: 'The BIPV - CEO, for our respected <i>SCP users</i>'
   },
   about: {
-    title: 'About this app',
-    contact_title: 'Contact',
-    contact_text: 'If you want to get in touch with us or you had encountered any issue, feel free to contac us by email: <b>admin@scp.com</b>',
-    text: 'This application allows it\'s users to see in real time all the accidents which take place in their proximity.'
+    title: 'حول التطبيق',
+    contact_title: 'تواصل معنا',
+    contact_text: 'للبقاء على اتصال معنا او الابلاغ عن اي مشكلة نرجو التواصل عبر البريد الاكتروني التالي : <b>admin@scp.com</b>',
+    text: 'إن هذا التطبيقق يسمح للمستخدم بمشاهدة الحواد المحيطة به على الخريطة مباشرة'
   }
 }
