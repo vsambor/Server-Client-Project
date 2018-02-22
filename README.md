@@ -176,7 +176,7 @@ $ npm run client-e2e-test
 - [Code Climate](https://codeclimate.com/)
 
 **Security**
-- [Snyk](https://www.docker.com/)
+- [Snyk](https://snyk.io)
 
 **Deployment**
 - [Docker](https://www.docker.com/)
