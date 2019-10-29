@@ -29,7 +29,7 @@
     "jwt-simple": "^0.5.1",
     "marker-clusterer-plus": "^2.1.4",
     "moment": "^2.20.1",
-    "mongoose": "^4.13.7",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.0",
     "nodemailer": "^4.4.2",
     "passport": "^0.4.0",
