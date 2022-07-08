@@ -28,7 +28,7 @@
     "i18n": "^0.8.3",
     "jwt-simple": "^0.5.1",
     "marker-clusterer-plus": "^2.1.4",
-    "moment": "^2.20.1",
+    "moment": "^2.29.4",
     "mongoose": "^4.13.7",
     "morgan": "^1.9.0",
     "nodemailer": "^4.4.2",
