@@ -1,0 +1,35 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:extend:20180424':
+    - sparql-client > request > extend:
+        patched: '2022-10-06T15:40:31.119Z'
+  'npm:hoek:20180212':
+    - sparql-client > request > hawk > hoek:
+        patched: '2022-10-06T15:40:31.119Z'
+    - sparql-client > request > hawk > boom > hoek:
+        patched: '2022-10-06T15:40:31.119Z'
+    - sparql-client > request > hawk > sntp > hoek:
+        patched: '2022-10-06T15:40:31.119Z'
+    - sparql-client > request > hawk > cryptiles > boom > hoek:
+        patched: '2022-10-06T15:40:31.119Z'
+    - passport-jwt > jsonwebtoken > joi > hoek:
+        patched: '2022-10-06T15:40:31.119Z'
+    - passport-jwt > jsonwebtoken > joi > topo > hoek:
+        patched: '2022-10-06T15:40:31.119Z'
+  SNYK-JS-LODASH-567746:
+    - mongoose > async > lodash:
+        patched: '2022-10-06T15:40:31.119Z'
+    - vue2-google-maps > babel-plugin-lodash > lodash:
+        patched: '2022-10-06T15:40:31.119Z'
+    - vue2-google-maps > babel-plugin-lodash > babel-helper-module-imports > lodash:
+        patched: '2022-10-06T15:40:31.119Z'
+    - vue2-google-maps > babel-plugin-lodash > babel-types > lodash:
+        patched: '2022-10-06T15:40:31.119Z'
+    - vue2-google-maps > babel-plugin-lodash > babel-helper-module-imports > babel-types > lodash:
+        patched: '2022-10-06T15:40:31.119Z'
+  'npm:stringstream:20180511':
+    - sparql-client > request > stringstream:
+        patched: '2022-10-06T15:40:31.119Z'
