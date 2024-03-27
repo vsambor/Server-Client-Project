@@ -23,7 +23,7 @@
     "compression": "^1.7.1",
     "cors": "^2.8.4",
     "event-stream": "^3.3.4",
-    "express": "^4.16.2",
+    "express": "^4.19.2",
     "helmet": "^3.9.0",
     "i18n": "^0.8.3",
     "jwt-simple": "^0.5.1",
